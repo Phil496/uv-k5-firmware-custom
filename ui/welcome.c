@@ -111,8 +111,8 @@ void UI_DisplayWelcome(void)
 
 		#ifdef ENABLE_SPECTRUM
 			#ifdef ENABLE_FMRADIO
-					UI_PrintStringSmallNormal(Based, 0, 127, 5);
-					UI_PrintStringSmallNormal(Credits, 0, 127, 6);
+				//	UI_PrintStringSmallNormal(Based, 0, 127, 5);
+				//	UI_PrintStringSmallNormal(Credits, 0, 127, 6);
 			#else
 					UI_PrintStringSmallNormal("Bandscope  ", 0, 127, 5);
 					memcpy(gFrameBuffer[5] + 95, BITMAP_Ready, sizeof(BITMAP_Ready));
