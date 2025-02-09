@@ -1,5 +1,7 @@
 This repository is a fork of [Armel custom firmware](https://github.com/armel/uv-k5-firmware-custom) for testing purpose.
 
+
+
 All is a cloned and customized version of DualTachyon's open firmware found [here](https://github.com/DualTachyon/uv-k5-firmware) ... a cool achievement !
 
 > [!NOTE]
@@ -19,39 +21,7 @@ Anyway, have fun.
 > _FR - Je recommande de sauvegarder votre eeprom avec [k5prog](https://github.com/sq5bpf/k5prog) avant de jouer avec des firmwares alternatifs. C'est un bon réflexe à avoir._
 
 
-## Table of Contents
 
-* [My Features](#main-features)
-* [Main Features from Egzumer](#main-features-from-egzumer)
-* [Manual](#manual)
-* [Radio Performance](#radio-performance)
-* [Compiler](#compiler)
-* [Building](#building)
-* [Credits](#credits)
-* [Other sources of information](#other-sources-of-information)
-* [License](#license)
-* [Example changes/updates](#example-changesupdates)
-
-
- ## Manual
-
-Up to date manual is available in the [Wiki section](https://github.com/armel/uv-k5-firmware-custom/wiki)
-
-## Radio performance
-
-Please note that the Quansheng UV-Kx radios are not professional quality transceivers, their
-performance is strictly limited. The RX front end has no track-tuned band pass filtering
-at all, and so are wide band/wide open to any and all signals over a large frequency range.
-
-Using the radio in high intensity RF environments will most likely make reception anything but
-easy (AM mode will suffer far more than FM ever will), the receiver simply doesn't have a
-great dynamic range, which results in distorted AM audio with stronger RX'ed signals.
-There is nothing more anyone can do in firmware/software to improve that, once the RX gain
-adjustment I do (AM fix) reaches the hardwares limit, your AM RX audio will be all but
-non-existent (just like Quansheng's firmware).
-On the other hand, FM RX audio will/should be fine.
-
-But, they are nice toys for the price, fun to play with.
 
 ## Compiler
 
