@@ -1,6 +1,4 @@
-# Open re-implementation of the Quansheng UV-K5/K6/5R v2.1.27 firmware
-
-This repository is a fork of [Egzumer custom firmware](https://github.com/egzumer/uv-k5-firmware-custom), who was a merge of [OneOfEleven custom firmware](https://github.com/OneOfEleven/uv-k5-firmware-custom) with [fagci spectrum analizer](https://github.com/fagci/uv-k5-firmware-fagci-mod/tree/refactor) plus my few changes.
+This repository is a fork of [Armel custom firmware](https://github.com/armel/uv-k5-firmware-custom) for testing purpose.
 
 All is a cloned and customized version of DualTachyon's open firmware found [here](https://github.com/DualTachyon/uv-k5-firmware) ... a cool achievement !
 
@@ -20,9 +18,6 @@ Anyway, have fun.
 >
 > _FR - Je recommande de sauvegarder votre eeprom avec [k5prog](https://github.com/sq5bpf/k5prog) avant de jouer avec des firmwares alternatifs. C'est un bon réflexe à avoir._
 
-# Donations
-
-Special thanks to Jean-Cyrille F6IWW, Fabrice 14RC123, David F4BPP, Olivier 14RC206, Frédéric F4ESO, Stéphane F5LGW, Jorge Ornelas, Laurent F4AXK, Christophe Morel, Clayton W0LED, Pierre Antoine F6FWB, Jean-Claude 14FRS3306, Thierry F4GVO, Eric F1NOU, PricelessToolkit, Ady M6NYJ, Tom McGovern, Joseph Roth, Pierre-Yves Colin, Frank DJ7FG, Marcel Testaz and Brian Frobisher for their [donations](https://www.paypal.com/paypalme/F4HWN). That’s so kind of them. Thanks so much 🙏🏻
 
 ## Table of Contents
 
@@ -37,103 +32,6 @@ Special thanks to Jean-Cyrille F6IWW, Fabrice 14RC123, David F4BPP, Olivier 14RC
 * [License](#license)
 * [Example changes/updates](#example-changesupdates)
 
-## Main features:
-
-* improve default power settings level (Low ~125mW, Mid ~2W and High ~5W),
-* improve s-meter (IARU recommandations),
-* improve UI: 
-    * menu index is always visible, even if a menu is selected,
-    * s-meter new design (Classic or Tiny), 
-    * MAIN ONLY screen mode, 
-    * DUAL and CROSS screen mode, 
-    * RX blink on VFO RX, 
-    * RX LED blink, 
-    * Squelch level and Monitor,
-    * Step value,
-    * CTCSS or DCS value,
-    * KeyLock message,
-    * last RX,
-    * move BatTxt  menu from 34/63 to 30/63 (just after BatSave menu 29/63),
-    * rename BackLt to BLTime,
-    * rename BltTRX to BLTxRx,
-    * and more...
-* new menu entries:
-    * add SetLow menu to set low power (<20mW, 125mW, 250mW, 500mW and 1W),
-    * add SetPtt menu to set PTT mode (Classic or OnePush),
-    * add SetTot menu to set TOT alert (Off, Sound, Visual, All),
-    * add SetCtr menu to set contrast (0 to 15),
-    * add SetInv menu to set screen in invert mode (Off or On),
-    * add SetEot menu to set EOT (End Of Transmission) alert (Off, Sound, Visual, All),
-    * add SetMet menu to set s-meter style (Classic or Tiny),
-    * add SetLck menu to set what is locked (Keys or Keys + PTT),
-    * add SetGui menu to set font size on the VFO baseline (Classic or Tiny),
-    * rename BatVol menu (52/63) to SysInf, which displays the firmware version in addition to the battery status,
-    * improve PonMsg menu,
-    * improve BackLt menu,
-    * improve TxTOut menu,
-* improve status bar,
-    * add SetPtt mode in status bar,
-    * change font and bitmaps,
-    * move USB icon to left of battery information,
-    * add RX and TX timers,
-* new actions:
-    * RX MODE,
-    * MAIN ONLY,
-    * PTT, 
-    * WIDE NARROW,
-    * 1750Hz,
-* new key combinations:
-    * add the F + UP or F + DOWN key combination to dynamically change the Squelch level,
-    * add the F + F1 or F + F2 key combination to dynamically change the Step,
-    * add F + 8 to quickly switch backlight between BLMin and BLMax on demand (this bypass BackLt strategy),
-    * add F + 9 to return to BackLt strategy,
-    * add long press on MENU, in * SCAN mode, to temporarily exclude a memory channel if (not working with * SCAN ALL).
-* many fix:
-    * squelch, 
-    * s-meter,
-    * DTMF overlaying, 
-    * scan list 2 ignored, 
-    * scan range limit,
-    * clean display on startup,
-    * and more...
-* disabled ENABLE_DTMF_CALLING,
-* disabled SCRAMBLER,
-* unlock TX on all bands needs only to be repeat 3 times,
-* add PMR 446 F Lock band,
-* remove blink and SOS functionality, 
-* code refactoring and many memory optimization,
-* and more...
-
-## Main features from Egzumer:
-* many of OneOfEleven mods:
-   * AM fix, huge improvement in reception quality
-   * long press buttons functions replicating F+ action
-   * fast scanning
-   * channel name editing in the menu
-   * channel name + frequency display option
-   * shortcut for scan-list assignment (long press `5 NOAA`)
-   * scan-list toggle (long press `* Scan` while scanning)
-   * configurable button function selectable from menu
-   * battery percentage/voltage on status bar, selectable from menu
-   * longer backlight times
-   * mic bar
-   * RSSI s-meter
-   * more frequency steps
-   * squelch more sensitive
-* fagci spectrum analyzer (**F+5** to turn on)
-* some other mods introduced by me:
-   * SSB demodulation (adopted from fagci)
-   * backlight dimming
-   * battery voltage calibration from menu
-   * better battery percentage calculation, selectable for 1600mAh or 2200mAh
-   * more configurable button functions
-   * long press MENU as another configurable button
-   * better DCS/CTCSS scanning in the menu (`* SCAN` while in RX DCS/CTCSS menu item)
-   * Piotr022 style s-meter
-   * restore initial freq/channel when scanning stopped with EXIT, remember last found transmission with MENU button
-   * reordered and renamed menu entries
-   * LCD interference crash fix
-   * many others...
 
  ## Manual
 
@@ -258,25 +156,3 @@ You may obtain a copy of the License at
     See the License for the specific language governing permissions and
     limitations under the License.
 
-## Example changes/updates
-
-Here are a few photos.
-
-|![Main Only and Dual RX Respond](https://github.com/armel/uv-k5-firmware-custom-feat-F4HWN/blob/main/photos/IMG_3291.png)|
-|:--:|
-| Main Only and Dual RX Respond |
-
-
-|![Main Only and Dual RX Respond (invert mode)](https://github.com/armel/uv-k5-firmware-custom-feat-F4HWN/blob/main/photos/IMG_3290.png)|
-|:--:|
-| Main Only and Dual RX Respond (invert mode) |
-
-
-|![Some new menu entries](https://github.com/armel/uv-k5-firmware-custom-feat-F4HWN/blob/main/photos/IMG_3292.png)|
-|:--:|
-| Some new menu entries |
-
-
-|![Main Only and Spectrum Analyzer](https://github.com/armel/uv-k5-firmware-custom-feat-F4HWN/blob/main/photos/IMG_3293.png)|
-|:--:|
-| Main Only and Spectrum Analyzer |
