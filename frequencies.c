@@ -186,7 +186,7 @@ int32_t TX_freq_check(const uint32_t Frequency)
 				if (gSetting_500TX)
 					return 0;
 			break;
-
+/*																	@PBA v0.4
 		case F_LOCK_FCC:
 			if (Frequency >= 14400000 && Frequency < 14800000)
 				return 0;
@@ -221,7 +221,7 @@ int32_t TX_freq_check(const uint32_t Frequency)
 			if (Frequency >= 40000000 && Frequency < 43800000)
 				return 0;
 			break;
-
+*/
 #ifdef ENABLE_FEAT_F4HWN_PMR
 		case F_LOCK_PMR:
 			if (Frequency >= 44600625 && Frequency <= 44619375)
