@@ -697,14 +697,24 @@ uint8_t Rssi2Y(uint16_t rssi) {
   return DrawingEndY - Rssi2PX(rssi, 0, DrawingEndY);
 }
 
-static void DrawSpectrum() {
-  for (uint8_t x = 0; x < 128; ++x) {
-    uint16_t rssi = rssiHistory[x >> settings.stepsCount];
-    if (rssi != RSSI_MAX_VALUE) {
-      DrawVLine(Rssi2Y(rssi), DrawingEndY, x, true);
+
+static void DrawSpectrum() {      // correction bug on the spectrum analyzer (thanks @fagci)  @PBA v0.5
+  uint8_t ox = 0;
+  for (uint8_t i = 0; i < 128; ++i)
+   {
+       uint16_t rssi = rssiHistory[i >> settings.stepsCount];
+      if (rssi != RSSI_MAX_VALUE)
+        {
+          uint8_t x = i * 128 / GetStepsCount();
+          for (uint8_t xx = ox; xx < x; xx++)
+           {
+                DrawVLine(Rssi2Y(rssi), DrawingEndY, xx, true);
+           }
+           ox = x;
+        }
     }
-  }
 }
+  
 
 static void DrawStatus() {
 #ifdef SPECTRUM_EXTRA_VALUES
