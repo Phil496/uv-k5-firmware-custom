@@ -214,9 +214,9 @@ static void processFKeyFunction(const KEY_Code_t Key, const bool beep)
 #endif
 			}
 			else {
-#ifdef ENABLE_VOX
+// #ifdef ENABLE_VOX						@PBA v0.6
 				toggle_chan_scanlist();
-#endif
+// #endif
 			}
 
 			break;
@@ -229,7 +229,7 @@ static void processFKeyFunction(const KEY_Code_t Key, const bool beep)
 #ifdef ENABLE_VOX
 			ACTION_Vox();
 #else
-			toggle_chan_scanlist();
+//			toggle_chan_scanlist();			@PBA v0.6
 #endif
 			break;
 

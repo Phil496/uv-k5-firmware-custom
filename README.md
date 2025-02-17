@@ -1,4 +1,4 @@
-This repository is a fork of [Armel custom firmware](https://github.com/armel/uv-k5-firmware-custom) for testing purpose.
+This repository is a fork of [Armel custom firmware v2.8.1](https://github.com/armel/uv-k5-firmware-custom) for testing purpose.
 
 
 
