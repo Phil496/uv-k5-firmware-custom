@@ -105,7 +105,7 @@ void UI_DisplayWelcome(void)
 			gFrameBuffer[3][i] ^= 0x80;
 		}
 */
-		for (uint8_t i = 30; i < 98; i++)	// @PBA v0.6
+		for (uint8_t i = 31; i < 97; i++)	// @PBA v0.7
 		{
 			gFrameBuffer[6][i] ^= 0xFF;		// affichage en négatif sur ligne 6 @PBA v0.0.3
 		}
