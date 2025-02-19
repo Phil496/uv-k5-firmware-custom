@@ -127,7 +127,7 @@ void Main(void)
 		#ifdef ENABLE_FEAT_F4HWN
 			gEeprom.KEY_LOCK = 0;
 			SETTINGS_SaveSettings();
-			gMenuCursor = 62; // move to hidden section, fix me if change... !!! @PBA v0.6
+			gMenuCursor = 61; // move to hidden section, fix me if change... !!! @PBA v0.9
 		#endif
 	}
 
