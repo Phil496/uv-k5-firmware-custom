@@ -263,8 +263,8 @@ const char gSubMenu_PONMSG[][8] =
 	"ALL",
 	"SOUND",
 #else */      			// @PBA v1.1
-	"FULL",				// @PBA v1.1a
-// #endif
+	"FULL",				
+// #endif				// @PBA v1.1a
 	"MESSAGE",
 	"VOLTAGE",
 	"NONE"

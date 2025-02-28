@@ -172,11 +172,7 @@ extern const char        gSubMenu_D_RSP[4][11];
 #endif
 
 extern const char* const gSubMenu_PTT_ID[5];
-#ifdef ENABLE_FEAT_F4HWN
-	extern const char        gSubMenu_PONMSG[5][8];
-#else
-	extern const char        gSubMenu_PONMSG[4][8];
-#endif
+extern const char        gSubMenu_PONMSG[4][8];		// 4 choix dans menu POWER_ON @PBA v1.2
 extern const char        gSubMenu_ROGER[3][6];
 extern const char        gSubMenu_RESET[2][4];
 extern const char* const gSubMenu_F_LOCK[F_LOCK_LEN];
