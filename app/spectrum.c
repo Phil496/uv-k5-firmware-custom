@@ -700,7 +700,7 @@ uint8_t Rssi2Y(uint16_t rssi) {
 
 static void DrawSpectrum() {      // correction bug on the spectrum analyzer (thanks @fagci)  @PBA v0.5
   uint16_t steps = GetStepsCount();                   // max bars at 128 to correctly draw larger numbers of samples  @PBA v1.0
-  uint8_t bars = (steps > 128) ? 128 : steps;         // shift to center bar on freq marker  @PBA v1.0
+  uint8_t bars = (steps > 128) ? 128 : steps;         // shift to center bar on freq marker   @PBA v1.0
   uint8_t shift_graph = 64 / steps + 1;               // @PBA v1.0
   uint8_t ox = 0;
   for (uint8_t i = 0; i < 128; ++i)

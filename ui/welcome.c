@@ -59,7 +59,7 @@ void UI_DisplayWelcome(void)
 	ST7565_BlitStatusLine();
 	ST7565_BlitFullScreen();
 	
-	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_NONE) { 	// del mode_start son et tout @PBA v1.0
+	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_NONE) { 	// del mode_start son et tout  @PBA v1.0
 		ST7565_FillScreen(0x00);
 #else
 	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_NONE || gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_FULL_SCREEN) {

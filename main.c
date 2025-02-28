@@ -177,7 +177,7 @@ void Main(void)
 		BACKLIGHT_TurnOn();
 
 
-		if (gEeprom.POWER_ON_DISPLAY_MODE != POWER_ON_DISPLAY_MODE_NONE)	// del mode_start son et tout @PBA v1.0
+		if (gEeprom.POWER_ON_DISPLAY_MODE != POWER_ON_DISPLAY_MODE_NONE)	// del mode_start son et tout  @PBA v1.0
 		{	// 2.55 second boot-up screen
 			while (boot_counter_10ms > 0)
 			{

@@ -26,7 +26,7 @@
 #include <driver/backlight.h>
 
 enum POWER_OnDisplayMode_t {
-	POWER_ON_DISPLAY_MODE_FULL_SCREEN = 0,   // del mode_start son et tout @PBA v1.0
+	POWER_ON_DISPLAY_MODE_FULL_SCREEN = 0,   // del mode_start son et tout  @PBA v1.0
 	POWER_ON_DISPLAY_MODE_MESSAGE,
 	POWER_ON_DISPLAY_MODE_VOLTAGE,
 	POWER_ON_DISPLAY_MODE_NONE

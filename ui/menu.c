@@ -258,10 +258,11 @@ const char* const gSubMenu_PTT_ID[] =
 
 const char gSubMenu_PONMSG[][8] =
 {
+/*						   @PBA v1.1
 #ifdef ENABLE_FEAT_F4HWN
 	"ALL",
 	"SOUND",
-#else
+#else */      			// @PBA v1.1
 	"FULL",
 #endif
 	"MESSAGE",

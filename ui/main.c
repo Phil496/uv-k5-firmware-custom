@@ -1256,7 +1256,7 @@ void UI_DisplayMain(void)
  		{
  			if(gMonitor)
  			{
-				sprintf(String, "%s", "MON");   // @PBA v1.0
+				sprintf(String, "%s", "MON");    // @PBA v1.0
  			}
  			
 			if (isMainOnly(true))
