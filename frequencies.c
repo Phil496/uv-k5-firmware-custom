@@ -22,10 +22,10 @@
 // the BK4819 has 2 bands it covers, 18MHz ~ 660MHz and 840MHz ~ 1300MHz
 
 #define BX4819_band1_lower 1400000											// @PBA v0.6
-#define BX4819_band2_upper 189950000										// PBA v0.9
+#define BX4819_band2_upper 189950000										// @PBA v0.9
 
-const freq_band_table_t BX4819_band1 = {BX4819_band1_lower,  66500000}; 	// PBA v0.9
-const freq_band_table_t BX4819_band2 = {74500000, BX4819_band2_upper};		// PBA v0.9
+const freq_band_table_t BX4819_band1 = {BX4819_band1_lower,  66500000}; 	// @PBA v0.9
+const freq_band_table_t BX4819_band2 = {74500000, BX4819_band2_upper};		// @PBA v0.9
 
 const freq_band_table_t frequencyBandTable[] =
 {

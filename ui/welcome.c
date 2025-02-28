@@ -59,7 +59,7 @@ void UI_DisplayWelcome(void)
 	ST7565_BlitStatusLine();
 	ST7565_BlitFullScreen();
 	
-	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_NONE || gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_SOUND) {
+	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_NONE) { 	// del mode_start son et tout @PBA v1.0
 		ST7565_FillScreen(0x00);
 #else
 	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_NONE || gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_FULL_SCREEN) {
@@ -78,10 +78,10 @@ void UI_DisplayWelcome(void)
 		{
 			strcpy(WelcomeString0, "VOLTAGE");
 		}
-		else if(gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_ALL)
+/* 		else if(gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_ALL)		// del mode_start son et tout @PBA v1.0
 		{
 			EEPROM_ReadBuffer(0x0EB0, WelcomeString0, 16);
-		}
+		}  */	// del mode_start son et tout @PBA v1.0
 		else if(gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_MESSAGE)
 		{
 			EEPROM_ReadBuffer(0x0EB0, WelcomeString0, 16);

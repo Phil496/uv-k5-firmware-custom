@@ -59,14 +59,14 @@ void BACKLIGHT_InitHardware()
 }
 
 static void BACKLIGHT_Sound(void)
-{
+{ /*			 del mode_start son et tout @PBA v1.0
 	if (gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_SOUND || gEeprom.POWER_ON_DISPLAY_MODE == POWER_ON_DISPLAY_MODE_ALL)
 	{
 		AUDIO_PlayBeep(BEEP_880HZ_60MS_DOUBLE_BEEP);
 		AUDIO_PlayBeep(BEEP_880HZ_60MS_DOUBLE_BEEP);
 		gK5startup = false;
 	}
-	else
+	else */
 		gK5startup = false;		
 }
 
