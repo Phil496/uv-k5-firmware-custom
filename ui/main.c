@@ -1250,12 +1250,13 @@ void UI_DisplayMain(void)
 			UI_PrintStringSmallNormal("SCR", LCD_WIDTH + 106, 0, line + 1);
 #endif
 
+
 #ifdef ENABLE_FEAT_F4HWN
  		if(isMainVFO)	
  		{
  			if(gMonitor)
  			{
-				sprintf(String, "%s", "MONI");
+				sprintf(String, "%s", "MON");   // @PBA v1.0
  			}
  			
 			if (isMainOnly(true))
