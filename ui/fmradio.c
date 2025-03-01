@@ -43,7 +43,7 @@ void UI_DisplayFM(void)
 		BK1080_GetFreqHiLimit(gEeprom.FM_Band)/10
 		);
 	
-	UI_PrintStringSmallNormal(String, 1, 0, 5);
+	UI_PrintStringSmallNormal(String, 1, 0, 6);
 
 	//uint8_t spacings[] = {20,10,5};
 	//sprintf(String, "%d0k", spacings[gEeprom.FM_Space % 3]);
@@ -80,9 +80,9 @@ void UI_DisplayFM(void)
 	const uint16_t val_0A = BK1080_ReadRegister(0x0A);
 	sprintf(String, "%s %2udBuV %2u",
 		((val_0A >> 8) & 1u) ? "ST"  : "st",
-		(val_0A >> 0) & 0x00ff,		// RSSI
-		(val_07 >> 0) & 0x000f);		// SNR */
-	UI_PrintStringSmallNormal("Test", 1, 0, 6);
+		(val_0A >> 0) & 0x00ff,			// RSSI
+		(val_07 >> 0) & 0x000f);		// SNR 
+	UI_PrintStringSmallNormal(String, 1, 0, 5);
 
 	memset(String, 0, sizeof(String));
 	if (gAskToSave || (gEeprom.FM_IsMrMode && gInputBoxIndex > 0)) {
@@ -103,12 +103,7 @@ void UI_DisplayFM(void)
 	}
 
 	UI_PrintString(String, 0, 127, 1, 10);
-
-															
-
-
-
-
+	
 	ST7565_BlitFullScreen();
 }
 
