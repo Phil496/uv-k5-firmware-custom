@@ -43,7 +43,7 @@ void UI_DisplayFM(void)
 		BK1080_GetFreqHiLimit(gEeprom.FM_Band)/10
 		);
 	
-	UI_PrintStringSmallNormal(String, 1, 0, 6);
+	UI_PrintStringSmallNormal(String, 1, 0, 5);
 
 	//uint8_t spacings[] = {20,10,5};
 	//sprintf(String, "%d0k", spacings[gEeprom.FM_Space % 3]);
@@ -103,7 +103,7 @@ void UI_DisplayFM(void)
 		((val_0A >> 8) & 1u) ? "ST"  : "st",
 		(val_0A >> 0) & 0x00ff,		// RSSI
 		(val_07 >> 0) & 0x000f);		// SNR
-	UI_PrintStringSmallNormal("Test", 1, 0, 5);
+	UI_PrintStringSmallNormal("Test", 1, 0, 6);
 
 
 
