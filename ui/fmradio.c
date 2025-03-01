@@ -76,6 +76,14 @@ void UI_DisplayFM(void)
 
 	UI_PrintString(pPrintStr, 0, 127, 3, 10); // memory, vfo, scan
 
+	const uint16_t val_07 = BK1080_ReadRegister(0x07);   // affiche RSSI, ST mode, SNR  @PBA v1.3
+	const uint16_t val_0A = BK1080_ReadRegister(0x0A);
+	sprintf(String, "%s %2udBuV %2u",
+		((val_0A >> 8) & 1u) ? "ST"  : "st",
+		(val_0A >> 0) & 0x00ff,		// RSSI
+		(val_07 >> 0) & 0x000f);		// SNR */
+	UI_PrintStringSmallNormal("Test", 1, 0, 6);
+
 	memset(String, 0, sizeof(String));
 	if (gAskToSave || (gEeprom.FM_IsMrMode && gInputBoxIndex > 0)) {
 		UI_GenerateChannelString(String, gFM_ChannelPosition);
@@ -97,13 +105,7 @@ void UI_DisplayFM(void)
 	UI_PrintString(String, 0, 127, 1, 10);
 
 															
-	const uint16_t val_07 = BK1080_ReadRegister(0x07);   // affiche RSSI, ST mode, SNR  @PBA v1.3
-	const uint16_t val_0A = BK1080_ReadRegister(0x0A);
-	sprintf(String, "%s %2udBuV %2u",
-		((val_0A >> 8) & 1u) ? "ST"  : "st",
-		(val_0A >> 0) & 0x00ff,		// RSSI
-		(val_07 >> 0) & 0x000f);		// SNR
-	UI_PrintStringSmallNormal("Test", 1, 0, 6);
+
 
 
 
