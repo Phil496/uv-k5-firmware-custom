@@ -103,7 +103,7 @@ void UI_DisplayFM(void)
 		((val_0A >> 8) & 1u) ? "ST"  : "st",
 		(val_0A >> 0) & 0x00ff,		// RSSI
 		(val_07 >> 0) & 0x000f);		// SNR
-	UI_PrintStringSmallNormal(String, 1, 127, 5);
+	UI_PrintStringSmallNormal("Test", 1, 0, 5);
 
 
 
