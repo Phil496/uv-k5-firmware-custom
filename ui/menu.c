@@ -381,7 +381,7 @@ const t_sidefunction gSubMenu_SIDEFUNCTIONS[] =
 #endif
 	{"POWER",			ACTION_OPT_POWER},
 	{"MONITOR",			ACTION_OPT_MONITOR},
-	{"SCAN",			ACTION_OPT_SCAN},
+//	{"SCAN",			ACTION_OPT_SCAN},			@PBA v1.4
 #ifdef ENABLE_VOX
 	{"VOX",				ACTION_OPT_VOX},
 #endif
@@ -389,14 +389,14 @@ const t_sidefunction gSubMenu_SIDEFUNCTIONS[] =
 	{"ALARM",			ACTION_OPT_ALARM},
 #endif
 #ifdef ENABLE_FMRADIO
-	{"FM RADIO",		ACTION_OPT_FM},
+//	{"FM RADIO",		ACTION_OPT_FM},				@PBA v1.4
 #endif
 #ifdef ENABLE_TX1750
 	{"1750Hz",			ACTION_OPT_1750},
 #endif
-	{"LOCK\nKEYPAD",	ACTION_OPT_KEYLOCK},
-	{"VFO A\nVFO B",	ACTION_OPT_A_B},
-	{"VFO\nMEM",		ACTION_OPT_VFO_MR},
+//	{"LOCK\nKEYPAD",	ACTION_OPT_KEYLOCK},		@PBA v1.4
+//	{"VFO A\nVFO B",	ACTION_OPT_A_B},
+//	{"VFO\nMEM",		ACTION_OPT_VFO_MR},
 	{"MODE",			ACTION_OPT_SWITCH_DEMODUL},
 #ifdef ENABLE_BLMIN_TMP_OFF
 	{"BLMIN\nTMP OFF",  ACTION_OPT_BLMIN_TMP_OFF}, 		//BackLight Minimum Temporay OFF
