@@ -82,7 +82,7 @@ void UI_DisplayFM(void)
 		val_0A & 0x00ff,					// RSSI en dBµV, max 75dBµV (datasheet) ->87
 		val_07 & 0x000f,					// SNR en dB, max 15
 		((val_0A >> 8) & 1u) ? "S" : "m");	// Stéréo mode ou mono	
-	UI_PrintStringSmallNormal(String, 82, 127, 6);
+	UI_PrintStringSmallNormal(String, 84, 127, 6);		// @PBA v1.5
 
 	memset(String, 0, sizeof(String));
 	if (gAskToSave || (gEeprom.FM_IsMrMode && gInputBoxIndex > 0)) {
