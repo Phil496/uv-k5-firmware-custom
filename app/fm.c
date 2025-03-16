@@ -589,7 +589,7 @@ void FM_Play(void)
 
 void FM_Start(void)
 {
-//	gDualWatchActive 		  = false;		// Ne pas désactiver le dual watch en mode FM broadcast  @PBA v1.5
+	gDualWatchActive 		  = true;		// Ne pas désactiver le dual watch en mode FM broadcast  @PBA v1.5
 	gFmRadioMode              = true;
 	gFM_ScanState             = FM_SCAN_OFF;
 	gFM_RestoreCountdown_10ms = 0;
