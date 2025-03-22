@@ -110,7 +110,7 @@ void UI_DisplayFM(void)
 // Affichage la barre RSSI sur la ligne 5											@PBA v1.6c
 	const uint8_t rssi_bars = MIN(13, rssi_value * 13 / 75); 	// On convertit le RSSI en nombre de barres (max 13 barres)
 	memset(gFrameBuffer[5], 0, LCD_WIDTH);			// On efface la ligne 5
-	DrawFmLevelBar(10, 5, rssi_bars);				// On dessine la barre de niveau RSSI
+	DrawFmLevelBar(rssi_bars);				// On dessine la barre de niveau RSSI
 
 
 	memset(String, 0, sizeof(String));
