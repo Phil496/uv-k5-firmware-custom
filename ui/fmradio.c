@@ -29,6 +29,29 @@
 #include "ui/inputbox.h"
 #include "ui/ui.h"
 
+// Fonction pour dessiner une barre de niveau pour le RSSI, ligne 5			@PBA v1.6
+static void DrawFmLevelBar(uint8_t level)
+{
+	const char hollowBar[] = {
+		0b01111111,
+		0b01000001,
+		0b01000001,
+		0b01111111
+	};
+
+	uint8_t *p_line = gFrameBuffer[5];		// ligne 5
+
+	for(uint8_t i = 0; i < level; i++) {
+		if(i < 9) {
+			for(uint8_t j = 0; j < 4; j++)
+				p_line[30 + i * 5 + j] = (~(0x7F >> (i+1))) & 0x7F;   		// xpos 30
+		}
+		else {
+			memcpy(p_line + (30 + i * 5), &hollowBar, sizeof(hollowBar));  // xpos 30
+		}
+	}
+}
+
 void UI_DisplayFM(void)
 {
 	char String[16] = {0};
@@ -78,11 +101,17 @@ void UI_DisplayFM(void)
 
 	const uint16_t val_07 = BK1080_ReadRegister(0x07);   // affiche RSSI, ST mode, SNR  @PBA v1.3
 	const uint16_t val_0A = BK1080_ReadRegister(0x0A);
+	const uint8_t rssi_value = val_0A & 0x00ff;		// RSSI value						@PBA v1.6c
 	sprintf(String, "%2u/%2u%s",
-		val_0A & 0x00ff,					// RSSI en dBµV, max 75dBµV (datasheet) ->87
+		rssi_value,							// RSSI en dBµV, max 75dBµV (datasheet) ->87		@PBA v1.6
 		val_07 & 0x000f,					// SNR en dB, max 15
 		((val_0A >> 8) & 1u) ? "S" : "m");	// Stéréo mode ou mono	
 	UI_PrintStringSmallNormal(String, 84, 127, 6);		// @PBA v1.5
+// Affichage la barre RSSI sur la ligne 5											@PBA v1.6c
+	const uint8_t rssi_bars = MIN(13, rssi_value * 13 / 75); 	// On convertit le RSSI en nombre de barres (max 13 barres)
+	memset(gFrameBuffer[5], 0, LCD_WIDTH);			// On efface la ligne 5
+	DrawFmLevelBar(10, 5, rssi_bars);				// On dessine la barre de niveau RSSI
+
 
 	memset(String, 0, sizeof(String));
 	if (gAskToSave || (gEeprom.FM_IsMrMode && gInputBoxIndex > 0)) {
