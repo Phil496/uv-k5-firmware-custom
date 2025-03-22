@@ -1559,6 +1559,11 @@ void APP_TimeSlice500ms(void)
 	// regular display updates (once every 2 sec) - if need be
 	if ((gBatteryCheckCounter & 3) == 0)
 	{
+// Handle RSSI refresh for FM radio							@PBA v1.6
+	if (gFmRadioMode && gScreenToDisplay == DISPLAY_FM) {
+	gUpdateDisplay = true; // Force display refresh
+	}
+
 		if (gChargingWithTypeC || gSetting_battery_text > 0)
 			gUpdateStatus = true;
 		#ifdef ENABLE_SHOW_CHARGE_LEVEL
