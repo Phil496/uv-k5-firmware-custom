@@ -44,10 +44,10 @@ static void DrawFmLevelBar(uint8_t level)
 	for(uint8_t i = 0; i < level; i++) {
 		if(i < 9) {
 			for(uint8_t j = 0; j < 4; j++)
-				p_line[70 + i * 5 + j] = (~(0x7F >> (i+1))) & 0x7F;   		// xpos 30
+				p_line[55 + i * 5 + j] = (~(0x7F >> (i+1))) & 0x7F;   		// xpos 55
 		}
 		else {
-			memcpy(p_line + (70 + i * 5), &hollowBar, sizeof(hollowBar));  // xpos 30
+			memcpy(p_line + (55 + i * 5), &hollowBar, sizeof(hollowBar));   // xpos 55
 		}
 	}
 }
