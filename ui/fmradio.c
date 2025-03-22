@@ -44,10 +44,10 @@ static void DrawFmLevelBar(uint8_t level)
 	for(uint8_t i = 0; i < level; i++) {
 		if(i < 9) {
 			for(uint8_t j = 0; j < 4; j++)
-				p_line[60 + i * 5 + j] = (~(0x7F >> (i+1))) & 0x7F;   		// xpos 60
+				p_line[65 + i * 5 + j] = (~(0x7F >> (i+1))) & 0x7F;   		// xpos 65
 		}
 		else {
-			memcpy(p_line + (60 + i * 5), &hollowBar, sizeof(hollowBar));   // xpos 60
+			memcpy(p_line + (65 + i * 5), &hollowBar, sizeof(hollowBar));   // xpos 65
 		}
 	}
 }
@@ -108,7 +108,7 @@ void UI_DisplayFM(void)
 		((val_0A >> 8) & 1u) ? "S" : "m");	// Stéréo mode ou mono	
 	UI_PrintStringSmallNormal(String, 84, 127, 6);		// @PBA v1.5
 // Affichage la barre RSSI sur la ligne 5											@PBA v1.6c
-	const uint8_t rssi_bars = MIN(13, rssi_value * 13 / 75); 	// On convertit le RSSI en nombre de barres (max 13 barres)
+	const uint8_t rssi_bars = MIN(13, rssi_value / 6); 	// On convertit le RSSI en nombre de barres (max 13 barres) 13/75
 	memset(gFrameBuffer[5], 0, LCD_WIDTH);			// On efface la ligne 5
 	DrawFmLevelBar(rssi_bars);				// On dessine la barre de niveau RSSI
 
