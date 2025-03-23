@@ -97,7 +97,7 @@ void UI_DisplayFM(void)
 		pPrintStr = "M-SCAN";
 	}
 
-	UI_PrintString(pPrintStr, 0, 127, 3, 10); // memory, vfo, scan
+	UI_PrintStringSmallNormal(pPrintStr, 0, 127, 3); // memory, vfo, scan      ; fonte + petite @PBA v1.6
 
 	const uint16_t val_07 = BK1080_ReadRegister(0x07);   // affiche RSSI, ST mode, SNR  @PBA v1.3
 	const uint16_t val_0A = BK1080_ReadRegister(0x0A);
