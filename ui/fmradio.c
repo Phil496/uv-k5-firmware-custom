@@ -36,7 +36,7 @@ static void DrawFmLevelBar(uint8_t level)
 
 	for(uint8_t i = 0; i < level; i++) {
 			for(uint8_t j = 0; j < 4; j++)
-			p_line[86 + i * 5 + j] = (~(0x7F >> (i+1))) & 0x7F;   		// xpos 86
+			p_line[88 + i * 5 + j] = (~(0x7F >> (i+1))) & 0x7F;   		// xpos 88
 	}
 }
 
