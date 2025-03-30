@@ -87,8 +87,8 @@ void UI_DisplayFM(void)
 	UI_PrintStringSmallNormal(String, 84, 127, 6);		// @PBA v1.5
 // Affichage barre RSSI sur la ligne 5											@PBA v1.6c
 	const uint8_t rssi_bars = MIN(8, rssi_value / 10); 	// On convertit le RSSI en nombre de barres (max 8 barres) 8/80
-	memset(gFrameBuffer[5], 0, LCD_WIDTH);			// On efface la ligne 5
 	uint8_t *p_line = gFrameBuffer[5];				// ligne 5
+	memset(p_line, 0, LCD_WIDTH);			// On efface la ligne 5
 	for(uint8_t i = 0; i < rssi_bars; i++) {
 			for(uint8_t j = 0; j < 4; j++)
 			p_line[88 + i * 5 + j] = (~(0x7F >> (i+1))) & 0x7F;   		// xpos 88
