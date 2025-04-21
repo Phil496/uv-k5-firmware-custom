@@ -99,7 +99,7 @@ RegisterSpec registerSpecs[] = {
     {"LNAs", BK4819_REG_13, 8, 0b11, 1},
     {"LNA", BK4819_REG_13, 5, 0b111, 1},
     {"PGA", BK4819_REG_13, 0, 0b111, 1},
-    {"BPF", BK4819_REG_3D, 0, 0xFFFF, 0x2aaa},     // IF -> BPF : Bande Passante Filtre et non IF  @PBA v1.7
+    {"IF", BK4819_REG_3D, 0, 0xFFFF, 0x2aaa},
     // {"MIX", 0x13, 3, 0b11, 1}, // TODO: hidden
 };
 

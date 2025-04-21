@@ -466,7 +466,7 @@ static void Key_UP_DOWN(uint8_t state, int8_t Step)
 			return;
 		}
 
-//		gBeepToPlay = BEEP_1KHZ_60MS_OPTIONAL;						désactiver Beep @PBA v1.7
+//		gBeepToPlay = BEEP_1KHZ_60MS_OPTIONAL;						désactive Beep @PBA v1.7
 	} else if (gInputBoxIndex || state!=BUTTON_EVENT_HELD) {
 		return;
 	}
