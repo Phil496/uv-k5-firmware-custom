@@ -356,8 +356,8 @@ const char gSubMenu_SCRAMBLER[][7] =
 	{
 		"OFF",
 		"SOUND",
-		"VISUAL",
-		"ALL"
+		"VISUAL"
+//		"ALL"								choix ALL supprimé  @PBA v1.8
 	};
 
 	const char gSubMenu_SET_LCK[][9] =
@@ -885,11 +885,8 @@ void UI_DisplayMenu(void)
 			strcpy(String, gSubMenu_RESET[gSubMenuSelection]);
 			break;
 
-		case MENU_F_LOCK:
-			if(!gIsInSubMenu && gUnlockAllTxConfCnt>0 && gUnlockAllTxConfCnt<10)
-				strcpy(String, "READ\nMANUAL");
-			else
-				strcpy(String, gSubMenu_F_LOCK[gSubMenuSelection]);
+		case MENU_F_LOCK: 					 // select 10 times to enable F_LOCK_NONE > désactivé @PBA v1.8
+			strcpy(String, gSubMenu_F_LOCK[gSubMenuSelection]);
 			break;
 
 		#ifdef ENABLE_F_CAL_MENU

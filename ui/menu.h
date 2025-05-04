@@ -166,7 +166,7 @@ extern const char        gSubMenu_D_RSP[4][11];
 #ifdef ENABLE_FEAT_F4HWN
 	extern const char    gSubMenu_SET_LOW[5][7];
 	extern const char    gSubMenu_SET_PTT[2][8];
-	extern const char    gSubMenu_SET_TOT[4][7];
+	extern const char    gSubMenu_SET_TOT[3][7];	// 3 choix dans menu SET_TOT,  choix ALL supprimé  @PBA v1.8
 	extern const char    gSubMenu_SET_LCK[2][9];
 	extern const char    gSubMenu_SET_MET[2][8];
 #endif

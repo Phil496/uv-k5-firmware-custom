@@ -864,15 +864,11 @@ void APP_Update(void)
 
 		gBlinkCounter++;
 
-		if(
-			(gSetting_set_tot == 3 && gEeprom.BACKLIGHT_TIME != 0 && gBlinkCounter > 74000) || 
-			(gSetting_set_tot == 3 && gEeprom.BACKLIGHT_TIME == 0 && gBlinkCounter > 79000) || 
-			(gSetting_set_tot != 3 && gBlinkCounter > 76000)
-			) // try to calibrate 10 times
+		if(gBlinkCounter > 76000) // try to calibrate 10 times	// choix ALL supprimé  @PBA v1.8
 		{
 			gBlinkCounter = 0;
 
-			if(gSetting_set_tot == 1 || gSetting_set_tot == 3)
+			if(gSetting_set_tot == 1)							// choix ALL supprimé  @PBA v1.8
 			{
 				BK4819_DisableScramble();
 				BK4819_PlaySingleTone(gTxTimeoutToneAlert, 30, 1, true);

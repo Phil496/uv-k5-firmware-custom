@@ -46,7 +46,6 @@
 	#define ARRAY_SIZE(x) (sizeof(x) / sizeof(x[0]))
 #endif
 
-uint8_t gUnlockAllTxConfCnt;
 
 #ifdef ENABLE_F_CAL_MENU
 	void writeXtalFreqCal(const int32_t value, const bool update_eeprom)
@@ -777,19 +776,7 @@ void MENU_AcceptSetting(void)
 			gSetting_350TX = gSubMenuSelection;
 			break;
 
-		case MENU_F_LOCK: {
-			if(gSubMenuSelection == F_LOCK_NONE) { // select 10 times to enable
-				gUnlockAllTxConfCnt++;
-#ifdef ENABLE_FEAT_F4HWN
-				if(gUnlockAllTxConfCnt < 3)
-#else
-				if(gUnlockAllTxConfCnt < 10)
-#endif
-					return;
-			}
-			else
-				gUnlockAllTxConfCnt = 0;
-
+		case MENU_F_LOCK: { // select 10 times to enable F_LOCK_NONE > désactivé @PBA v1.8
 			gSetting_F_LOCK = gSubMenuSelection;
 			break;
 		}

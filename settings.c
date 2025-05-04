@@ -293,8 +293,8 @@ void SETTINGS_InitEEPROM(void)
 		gSetting_set_low = (((Data[7] & 0xF0) >> 4) < 5) ? ((Data[7] & 0xF0) >> 4) : 0;
 		gSetting_set_ptt = (((Data[7] & 0x0F)) < 2) ? ((Data[7] & 0x0F)) : 0;
 
-		gSetting_set_tot = (((Data[6] & 0xF0) >> 4) < 4) ? ((Data[6] & 0xF0) >> 4) : 0;
-		gSetting_set_eot = (((Data[6] & 0x0F)) < 4) ? ((Data[6] & 0x0F)) : 0;
+		gSetting_set_tot = (((Data[6] & 0xF0) >> 3) < 3) ? ((Data[6] & 0xF0) >> 3) : 0;		// choix ALL supprimé 4>3 @PBA v1.8
+		gSetting_set_eot = (((Data[6] & 0x0F)) < 3) ? ((Data[6] & 0x0F)) : 0;				// choix ALL supprimé  @PBA v1.8
 
 		int tmp = ((Data[5] & 0xF0) >> 4);
 
@@ -665,7 +665,7 @@ void SETTINGS_SaveSettings(void)
 		tmp = tmp | (1 << 3);
 
 	State[5] = ((tmp << 4) | (gSetting_set_ctr & 0x0F));
-	State[6] = ((gSetting_set_tot << 4) | (gSetting_set_eot & 0x0F));
+	State[6] = ((gSetting_set_tot << 3) | (gSetting_set_eot & 0x0F));		// choix ALL supprimé 4>3 @PBA v1.8
 	State[7] = ((gSetting_set_low << 4) | (gSetting_set_ptt & 0x0F));
 
 	gEeprom.KEY_LOCK_PTT = gSetting_set_lck;

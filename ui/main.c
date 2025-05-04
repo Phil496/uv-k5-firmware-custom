@@ -512,7 +512,7 @@ void UI_MAIN_TimeSlice500ms(void)
 						BK4819_ToggleGpioOut(BK4819_GPIO6_PIN2_GREEN, true);
 					}
 
-					if(gSetting_set_eot == 1 || gSetting_set_eot == 3)
+					if(gSetting_set_eot == 1)						// choix ALL supprimé  @PBA v1.8
 					{
 						switch(RxBlinkLedCounter)
 						{
