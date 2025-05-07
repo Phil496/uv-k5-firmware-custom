@@ -116,9 +116,6 @@ const t_menu_item MenuList[] =
 	{"D List",		MENU_D_LIST        },
 #endif
 	{"D Live",		MENU_D_LIVE_DEC    }, // live DTMF decoder
-#ifdef ENABLE_AM_FIX
-	{"AM Fix",		MENU_AM_FIX        },
-#endif
 #ifdef ENABLE_VOX
 	{"VOX",			MENU_VOX           },
 #endif
@@ -450,10 +447,10 @@ void UI_DisplayMenu(void)
 	UI_DisplayClear();
 
 #ifdef ENABLE_FEAT_F4HWN
-	UI_DrawLineBuffer(gFrameBuffer, 50, 0, 50, 55, 1); // Be ware, status zone = 8 lines, the rest = 56 ->total 64
+	UI_DrawLineBuffer(gFrameBuffer, 48, 0, 48, 55, 1); // Be ware, status zone = 8 lines, the rest = 56 ->total 64   @PBA v1.9
 	//UI_DrawLineDottedBuffer(gFrameBuffer, 0, 46, 50, 46, 1);
 
-	for (uint8_t i = 0; i < 50; i += 2)
+	for (uint8_t i = 0; i < 48; i += 2)						// @PBA v1.9
 	{
 		gFrameBuffer[5][i] = 0x40;
 	}
@@ -685,9 +682,6 @@ void UI_DisplayMenu(void)
 			strcpy(String, gSubMenu_RX_TX[gSubMenuSelection]);
 			break;
 
-		#ifdef ENABLE_AM_FIX
-			case MENU_AM_FIX:
-		#endif
 		case MENU_BCL:
 		case MENU_BEEP:
 		case MENU_S_ADD1:
