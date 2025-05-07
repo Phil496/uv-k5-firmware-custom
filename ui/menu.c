@@ -738,7 +738,9 @@ void UI_DisplayMenu(void)
 			{
 				const uint32_t frequency = SETTINGS_FetchChannelFrequency(gSubMenuSelection);
 
-				if (!gIsInSubMenu || edit_index < 0)
+				if (!gIsInSubMenu)						// fix Menu 17  @PBA v1.9
+					edit_index = -1;
+				if (edit_index < 0)
 				{	// show the channel name
 					SETTINGS_FetchChannelName(String, gSubMenuSelection);
 					char *pPrintStr = String[0] ? String : "--";
