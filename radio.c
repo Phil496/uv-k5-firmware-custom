@@ -645,10 +645,41 @@ void RADIO_SelectVfos(void)
 	RADIO_SelectCurrentVfo();
 }
 
-void RADIO_SetupRegisters(bool switchToForeground)
+void RADIO_SetupRegisters(bool switchToForeground, bool isFmDwCheck)
 {
+#ifdef ENABLE_FMRADIO
+    if (gFmRadioMode && isFmDwCheck)
+    {
+        // This is a Dual Watch check while FM radio is active.
+        // Perform minimal setup to check for a signal on the alternate VFO
+        // without disturbing FM audio.
+
+        uint32_t Frequency = gRxVfo->pRX->Frequency;
+        BK4819_SetFrequency(Frequency);
+        BK4819_PickRXFilterPathBasedOnFrequency(Frequency);
+
+        // Ensure RX is enabled for the check
+        BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_RX_ENABLE, true);
+
+        // Set a minimal interrupt mask for squelch events
+        // This ensures that if a signal is found, g_SquelchLost will be set,
+        // which is then checked by CheckForIncoming and HandleIncoming in app.c
+        uint16_t InterruptMask = BK4819_REG_3F_SQUELCH_FOUND | BK4819_REG_3F_SQUELCH_LOST;
+        BK4819_WriteRegister(BK4819_REG_3F, InterruptMask);
+
+        // It's important NOT to call FUNCTION_Init() here as it would reset gCurrentCodeType
+        // and other states that might be specific to FM mode or other ongoing processes.
+        // The existing squelch interrupt mechanism should be sufficient for DW signal detection.
+		// Also, do not call AUDIO_AudioPathOff() or change gEnableSpeaker.
+
+        return; // Return early to skip full VFO setup
+    }
+#endif
+
 	BK4819_FilterBandwidth_t Bandwidth = gRxVfo->CHANNEL_BANDWIDTH;
 
+	// If it's not an FM Dual Watch check, then the original logic applies,
+	// including potentially turning off audio if FM mode is not active.
 	if (!gFmRadioMode) { 		// @PBA 2.0
 	AUDIO_AudioPathOff();
 	gEnableSpeaker = false;
@@ -1169,7 +1200,7 @@ void RADIO_SendEndOfTransmission(void)
 	// send the CTCSS/DCS tail tone - allows the receivers to mute the usual FM squelch tail/crash
 	if(gEeprom.TAIL_TONE_ELIMINATION)
 		RADIO_SendCssTail();
-	RADIO_SetupRegisters(false);
+	RADIO_SetupRegisters(false, false);
 }
 
 void RADIO_PrepareCssTX(void)
@@ -1180,5 +1211,5 @@ void RADIO_PrepareCssTX(void)
 
 	if(gEeprom.TAIL_TONE_ELIMINATION)
 		RADIO_SendCssTail();
-	RADIO_SetupRegisters(true);
+	RADIO_SetupRegisters(true, false);
 }

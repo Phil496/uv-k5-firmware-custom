@@ -369,7 +369,7 @@ Skip:
 			break;
 
 		case END_OF_RX_MODE_END:
-			RADIO_SetupRegisters(true);
+			RADIO_SetupRegisters(true, false);
 
 			#ifdef ENABLE_NOAA
 				if (IS_NOAA_CHANNEL(gRxVfo->CHANNEL_SAVE))
@@ -580,7 +580,7 @@ static void DualwatchAlternate(void)
 		}
 	}
 
-	RADIO_SetupRegisters(false);
+	RADIO_SetupRegisters(false, gFmRadioMode);
 
 	#ifdef ENABLE_NOAA
 		gDualWatchCountdown_10ms = gIsNoaaMode ? dual_watch_count_noaa_10ms : dual_watch_count_toggle_10ms;
@@ -960,7 +960,7 @@ void APP_Update(void)
 #endif
 		{
 			NOAA_IncreaseChannel();
-			RADIO_SetupRegisters(false);
+			RADIO_SetupRegisters(false, false);
 
 			gNOAA_Countdown_10ms = 7;      // 70ms
 			gScheduleNOAA        = false;
@@ -1595,7 +1595,8 @@ void APP_TimeSlice500ms(void)
 				RADIO_ConfigureChannel(0, VFO_CONFIGURE_RELOAD);
 				RADIO_ConfigureChannel(1, VFO_CONFIGURE_RELOAD);
 
-				RADIO_SetupRegisters(true);
+				// RADIO_SetupRegisters(true);
+				RADIO_SetupRegisters(true, false);
 			}
 */
 			DTMF_clear_input_box();
@@ -1694,7 +1695,7 @@ static void ALARM_Off(void)
 
 	SYSTEM_DelayMs(5);
 
-	RADIO_SetupRegisters(true);
+	RADIO_SetupRegisters(true, false);
 
 	if (gScreenToDisplay != DISPLAY_MENU)     // 1of11 .. don't close the menu
 		gRequestDisplayScreen = DISPLAY_MAIN;
@@ -2061,7 +2062,7 @@ Skip:
 		RADIO_ConfigureNOAA();
 #endif
 
-		RADIO_SetupRegisters(true);
+		RADIO_SetupRegisters(true, false);
 
 #ifdef ENABLE_DTMF_CALLING
 		gDTMF_auto_reset_time_500ms = 0;
