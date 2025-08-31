@@ -98,10 +98,16 @@ RegisterSpec registerSpecs[] = {
     {},
     {"LNAs", BK4819_REG_13, 8, 0b11, 1},
     {"LNA", BK4819_REG_13, 5, 0b111, 1},
-    {"PGA", BK4819_REG_13, 0, 0b111, 1},
-    {"IF", BK4819_REG_3D, 0, 0xFFFF, 0x2aaa},
+    {"VGA", BK4819_REG_13, 0, 0b111, 1},  // @PBA v2.0
+    {"BPF", BK4819_REG_3D, 0, 0xFFFF, 0x2aaa},
     // {"MIX", 0x13, 3, 0b11, 1}, // TODO: hidden
 };
+
+// @PBA v2.0
+const int8_t LNAsOptions[] = {-19, -16, -11, 0};
+const int8_t LNAOptions[] = {-24, -19, -14, -9, -6, -4, -2, 0};
+const int8_t VGAOptions[] = {-33, -27, -21, -15, -9, -6, -3, 0};
+const char *BPFOptions[] = {"8.46", "7.25", "6.35", "5.64", "5.08", "4.62", "4.23"};
 
 uint16_t statuslineUpdateTimer = 0;
 
@@ -1131,11 +1137,18 @@ static void RenderStill() {
       }
     }
     sprintf(String, "%s", registerSpecs[idx].name);
-    GUI_DisplaySmallest(String, offset + 2, row * 8 + 2, false,
-                        menuState != idx);
-    sprintf(String, "%u", GetRegMenuValue(idx));
-    GUI_DisplaySmallest(String, offset + 2, (row + 1) * 8 + 1, false,
-                        menuState != idx);
+    GUI_DisplaySmallest(String, offset + 2, row * 8 + 2, false, menuState != idx);
+
+    if(idx == 1)  // @PBA v2.0
+      { sprintf(String, "%ddB", LNAsOptions[GetRegMenuValue(idx)]); }
+      else if(idx == 2)
+       { sprintf(String, "%ddB", LNAOptions[GetRegMenuValue(idx)]); }
+      else if(idx == 3)
+       { sprintf(String, "%ddB", VGAOptions[GetRegMenuValue(idx)]); }
+      else if(idx == 4)
+       { sprintf(String, "%skHz", BPFOptions[(GetRegMenuValue(idx) / 0x2aaa)]); }                 
+
+    GUI_DisplaySmallest(String, offset + 2, (row + 1) * 8 + 1, false, menuState != idx);
   }
 }
 
