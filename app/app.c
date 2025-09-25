@@ -593,7 +593,6 @@ static void DualwatchAlternate(void)
 // Background RSSI monitoring during FM radio mode - no audio switching
 static void BackgroundDualWatchRSSI(void)
 {
-	const uint8_t oldVFO = gEeprom.RX_VFO;
 	const uint32_t oldFreq = gRxVfo->pRX->Frequency;
 
 	// Switch to the other VFO temporarily for RSSI check
@@ -601,8 +600,7 @@ static void BackgroundDualWatchRSSI(void)
 	const VFO_Info_t *checkVfo = &gEeprom.VfoInfo[gDualWatchCurrentVFO];
 
 	// Quickly set frequency for RSSI measurement without changing audio path
-	BK4819_WriteRegister(BK4819_REG_05, checkVfo->pRX->Frequency & 0xFFFF);
-	BK4819_WriteRegister(BK4819_REG_06, (checkVfo->pRX->Frequency >> 16) & 0xFFFF);
+	BK4819_SetFrequency(checkVfo->pRX->Frequency);
 
 	// Allow time for frequency settling (minimal delay)
 	SYSTEM_DelayMs(1);
@@ -629,8 +627,7 @@ static void BackgroundDualWatchRSSI(void)
 	}
 
 	// Restore original frequency
-	BK4819_WriteRegister(BK4819_REG_05, oldFreq & 0xFFFF);
-	BK4819_WriteRegister(BK4819_REG_06, (oldFreq >> 16) & 0xFFFF);
+	BK4819_SetFrequency(oldFreq);
 
 	// Reset timer for next check
 	gDualWatchRSSICountdown_10ms = dual_watch_count_rssi_check_10ms;
