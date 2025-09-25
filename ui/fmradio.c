@@ -38,7 +38,7 @@ void UI_DisplayFM(void)
 
 	UI_PrintString("FM", 2, 0, 0, 8);
 
-	sprintf(String, "%d%s-%dM", 
+	sprintf(String, "%d%s-%d", 										// @PBA v2.1
 		BK1080_GetFreqLoLimit(gEeprom.FM_Band)/10,
 		gEeprom.FM_Band == 0 ? ".5" : "",
 		BK1080_GetFreqHiLimit(gEeprom.FM_Band)/10
@@ -56,13 +56,13 @@ void UI_DisplayFM(void)
 		pPrintStr = "DEL?";
 	} else if (gFM_ScanState == FM_SCAN_OFF) {
 		if (gEeprom.FM_IsMrMode) {
-			sprintf(String, "MR(CH%02u)", gEeprom.FM_SelectedChannel + 1);
+			sprintf(String, "MR-M%02u", gEeprom.FM_SelectedChannel + 1);  // @PBA v2.1
 			pPrintStr = String;
 		} else {
 			pPrintStr = "VFO";
 			for (unsigned int i = 0; i < 20; i++) {
 				if (gEeprom.FM_FrequencyPlaying == gFM_Channels[i]) {
-					sprintf(String, "VFO(CH%02u)", i + 1);
+					sprintf(String, "VFO-M%02u", i + 1);				// @PBA v2.1
 					pPrintStr = String;
 					break;
 				}
@@ -99,7 +99,7 @@ void UI_DisplayFM(void)
 	if (gAskToSave || (gEeprom.FM_IsMrMode && gInputBoxIndex > 0)) {
 		UI_GenerateChannelString(String, gFM_ChannelPosition);
 	} else if (gAskToDelete) {
-		sprintf(String, "CH-%02u", gEeprom.FM_SelectedChannel + 1);
+		sprintf(String, "M%02u", gEeprom.FM_SelectedChannel + 1);		// @PBA v2.1
 	} else {
 		if (gInputBoxIndex == 0) {
 			sprintf(String, "%3d.%d", gEeprom.FM_FrequencyPlaying / 10, gEeprom.FM_FrequencyPlaying % 10);
