@@ -649,9 +649,15 @@ void RADIO_SetupRegisters(bool switchToForeground)
 {
 	BK4819_FilterBandwidth_t Bandwidth = gRxVfo->CHANNEL_BANDWIDTH;
 
-	AUDIO_AudioPathOff();
+#ifdef ENABLE_FMRADIO
+	if (!gFmRadioMode) {
+#endif
+		AUDIO_AudioPathOff();
 
-	gEnableSpeaker = false;
+		gEnableSpeaker = false;
+#ifdef ENABLE_FMRADIO
+	}
+#endif
 
 	BK4819_ToggleGpioOut(BK4819_GPIO6_PIN2_GREEN, false);
 

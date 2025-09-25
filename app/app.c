@@ -978,7 +978,7 @@ void APP_Update(void)
 		&& gVoiceWriteIndex == 0
 #endif
 #ifdef ENABLE_FMRADIO
-		&& !gFmRadioMode
+	&& (!gFmRadioMode || gFM_ScanState == FM_SCAN_OFF)
 #endif
 #ifdef ENABLE_DTMF_CALLING
 		&& gDTMF_CallState == DTMF_CALL_STATE_NONE
