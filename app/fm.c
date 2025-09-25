@@ -251,7 +251,12 @@ static void Key_DIGITS(KEY_Code_t Key, uint8_t state)
 
 		if (State == STATE_FREQ_MODE) {
 			if (gInputBoxIndex == 1) {
-				if (gInputBox[0] > 1) {
+				if (gInputBox[0] > 2) {
+					gBeepToPlay = BEEP_500HZ_60MS_DOUBLE_BEEP_OPTIONAL;
+					gInputBoxIndex = 0;
+					return;
+				}
+				else if (gInputBox[0] > 1) {
 					gInputBox[1] = gInputBox[0];
 					gInputBox[0] = 0;
 					gInputBoxIndex = 2;
