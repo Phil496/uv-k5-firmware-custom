@@ -33,15 +33,13 @@ void UI_GenerateChannelString(char *pString, const uint8_t Channel)
 
 	if (gInputBoxIndex == 0)
 	{
-		sprintf(pString, "CH-%02u", Channel + 1);
+		sprintf(pString, "M%02u", Channel + 1);		// modif pour mémoire FM @PBA v2.1a
 		return;
 	}
 
-	pString[0] = 'C';
-	pString[1] = 'H';
-	pString[2] = '-';
-	for (i = 0; i < 2; i++)
-		pString[i + 3] = (gInputBox[i] == 10) ? '-' : gInputBox[i] + '0';
+	pString[0] = 'M';
+	for (i = 1; i < 3; i++)
+		pString[i] = (gInputBox[i] == 10) ? '?' : gInputBox[i] + '0';
 }
 
 void UI_GenerateChannelStringEx(char *pString, const bool bShowPrefix, const uint8_t ChannelNumber)
