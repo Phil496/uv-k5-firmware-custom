@@ -585,7 +585,12 @@ static void DualwatchAlternate(void)
 	#ifdef ENABLE_NOAA
 		gDualWatchCountdown_10ms = gIsNoaaMode ? dual_watch_count_noaa_10ms : dual_watch_count_toggle_10ms;
 	#else
-		gDualWatchCountdown_10ms = dual_watch_count_toggle_10ms;
+		#ifdef ENABLE_FMRADIO
+			// Use longer interval when FM radio is active to reduce audio interruptions
+			gDualWatchCountdown_10ms = gFmRadioMode ? dual_watch_count_fm_mode_10ms : dual_watch_count_toggle_10ms;
+		#else
+			gDualWatchCountdown_10ms = dual_watch_count_toggle_10ms;
+		#endif
 	#endif
 }
 

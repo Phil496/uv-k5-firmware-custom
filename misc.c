@@ -62,6 +62,7 @@ const uint8_t     scan_delay_10ms                  =   210 / 10;   // 210ms
 	const uint16_t dual_watch_count_after_vox_10ms  =   200 / 10;   // 200ms
 #endif
 const uint16_t    dual_watch_count_toggle_10ms     =   100 / 10;   // 100ms between VFO toggles
+const uint16_t    dual_watch_count_fm_mode_10ms   =  2000 / 10;   // 2s between VFO toggles when FM active
 
 const uint16_t    scan_pause_delay_in_1_10ms       =  5000 / 10;   // 5 seconds
 const uint16_t    scan_pause_delay_in_2_10ms       =   500 / 10;   // 500ms
