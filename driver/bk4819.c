@@ -1186,8 +1186,13 @@ void BK4819_Conditional_RX_TurnOn_and_GPIO6_Enable(void)
 {
 	if (gRxIdleMode)
 	{
-		BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_RX_ENABLE, true);
-		BK4819_RX_TurnOn();
+#ifdef ENABLE_FMRADIO
+		if (!gFmRadioMode)
+#endif
+		{
+			BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_RX_ENABLE, true);
+			BK4819_RX_TurnOn();
+		}
 	}
 }
 

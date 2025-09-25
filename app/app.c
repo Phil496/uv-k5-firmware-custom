@@ -580,13 +580,16 @@ static void DualwatchAlternate(void)
 		}
 	}
 
-	RADIO_SetupRegisters(false);
+ 	#ifdef ENABLE_FMRADIO
+ 		if (!gFmRadioMode)
+ 	#endif
+ 			RADIO_SetupRegisters(false);
 
-	#ifdef ENABLE_NOAA
-		gDualWatchCountdown_10ms = gIsNoaaMode ? dual_watch_count_noaa_10ms : dual_watch_count_toggle_10ms;
-	#else
-		gDualWatchCountdown_10ms = dual_watch_count_toggle_10ms;
-	#endif
+ 	#ifdef ENABLE_NOAA
+ 		gDualWatchCountdown_10ms = gIsNoaaMode ? dual_watch_count_noaa_10ms : dual_watch_count_toggle_10ms;
+ 	#else
+ 		gDualWatchCountdown_10ms = dual_watch_count_toggle_10ms;
+ 	#endif
 }
 
 static void CheckRadioInterrupts(void)
@@ -967,23 +970,20 @@ void APP_Update(void)
 		}
 #endif
 
-	// toggle between the VFO's if dual watch is enabled
-	if (!SCANNER_IsScanning()
-		&& gEeprom.DUAL_WATCH != DUAL_WATCH_OFF
-		&& gScheduleDualWatch
-		&& gScanStateDir == SCAN_OFF
-		&& !gPttIsPressed
-		&& gCurrentFunction != FUNCTION_POWER_SAVE
-#ifdef ENABLE_VOICE
-		&& gVoiceWriteIndex == 0
-#endif
-#ifdef ENABLE_FMRADIO
-		&& !gFmRadioMode
-#endif
-#ifdef ENABLE_DTMF_CALLING
-		&& gDTMF_CallState == DTMF_CALL_STATE_NONE
-#endif
-	) {
+ 	// toggle between the VFO's if dual watch is enabled
+ 	if (!SCANNER_IsScanning()
+ 		&& gEeprom.DUAL_WATCH != DUAL_WATCH_OFF
+ 		&& gScheduleDualWatch
+ 		&& gScanStateDir == SCAN_OFF
+ 		&& !gPttIsPressed
+ 		&& gCurrentFunction != FUNCTION_POWER_SAVE
+ #ifdef ENABLE_VOICE
+ 		&& gVoiceWriteIndex == 0
+ #endif
+ #ifdef ENABLE_DTMF_CALLING
+ 		&& gDTMF_CallState == DTMF_CALL_STATE_NONE
+ #endif
+ 	) {
 		DualwatchAlternate();    // toggle between the two VFO's
 
 		if (gRxVfoIsActive && gScreenToDisplay == DISPLAY_MAIN) {
