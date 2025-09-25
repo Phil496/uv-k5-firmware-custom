@@ -86,6 +86,13 @@ void SystickHandler(void)
 		if (gCurrentFunction != FUNCTION_MONITOR && gCurrentFunction != FUNCTION_TRANSMIT && gCurrentFunction != FUNCTION_RECEIVE)
 			DECREMENT_AND_TRIGGER(gDualWatchCountdown_10ms, gScheduleDualWatch);
 
+#ifdef ENABLE_FMRADIO
+	// Background RSSI monitoring during FM radio mode
+	if (gFmRadioMode && gEeprom.DUAL_WATCH != DUAL_WATCH_OFF && gScanStateDir == SCAN_OFF)
+		if (gCurrentFunction != FUNCTION_MONITOR && gCurrentFunction != FUNCTION_TRANSMIT && gCurrentFunction != FUNCTION_RECEIVE)
+			DECREMENT_AND_TRIGGER(gDualWatchRSSICountdown_10ms, gScheduleDualWatchRSSI);
+#endif
+
 #ifdef ENABLE_NOAA
 	if (gScanStateDir == SCAN_OFF && !gCssBackgroundScan && gEeprom.DUAL_WATCH == DUAL_WATCH_OFF)
 		if (gIsNoaaMode && gCurrentFunction != FUNCTION_MONITOR && gCurrentFunction != FUNCTION_TRANSMIT)

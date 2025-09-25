@@ -594,6 +594,52 @@ static void DualwatchAlternate(void)
 	#endif
 }
 
+#ifdef ENABLE_FMRADIO
+// Background RSSI monitoring during FM radio mode - no audio switching
+static void BackgroundDualWatchRSSI(void)
+{
+	const uint8_t oldVFO = gEeprom.RX_VFO;
+	const uint32_t oldFreq = gRxVfo->pRX->Frequency;
+
+	// Switch to the other VFO temporarily for RSSI check
+	gDualWatchCurrentVFO = !gDualWatchCurrentVFO;
+	const VFO_Info_t *checkVfo = &gEeprom.VfoInfo[gDualWatchCurrentVFO];
+
+	// Quickly set frequency for RSSI measurement without changing audio path
+	BK4819_WriteRegister(BK4819_REG_05, checkVfo->pRX->Frequency & 0xFFFF);
+	BK4819_WriteRegister(BK4819_REG_06, (checkVfo->pRX->Frequency >> 16) & 0xFFFF);
+
+	// Allow time for frequency settling (minimal delay)
+	SYSTEM_DelayMs(1);
+
+	// Read RSSI level
+	const uint16_t rssi = BK4819_ReadRegister(BK4819_REG_67) & 0x01FF;
+
+	// If strong signal detected, switch to that VFO for monitoring
+	if (rssi > 100) { // Adjust threshold as needed
+		gEeprom.RX_VFO = gDualWatchCurrentVFO;
+		gRxVfo = &gEeprom.VfoInfo[gEeprom.RX_VFO];
+
+		// Full switch to receiving VFO with audio
+		gFmRadioMode = false; // Temporarily exit FM mode
+		RADIO_SetupRegisters(false);
+		gDualWatchActive = true;
+		gUpdateStatus = true;
+
+		// Reset to longer timeout to allow transmission to complete
+		gDualWatchRSSICountdown_10ms = dual_watch_count_fm_mode_10ms;
+		return;
+	}
+
+	// Restore original frequency
+	BK4819_WriteRegister(BK4819_REG_05, oldFreq & 0xFFFF);
+	BK4819_WriteRegister(BK4819_REG_06, (oldFreq >> 16) & 0xFFFF);
+
+	// Reset timer for next check
+	gDualWatchRSSICountdown_10ms = dual_watch_count_rssi_check_10ms;
+}
+#endif
+
 static void CheckRadioInterrupts(void)
 {
 	if (SCANNER_IsScanning())
@@ -1000,6 +1046,14 @@ void APP_Update(void)
 		gRxReceptionMode   = RX_MODE_NONE;
 		gScheduleDualWatch = false;
 	}
+
+#ifdef ENABLE_FMRADIO
+	// Background RSSI monitoring during FM radio mode
+	if (gFmRadioMode && gEeprom.DUAL_WATCH != DUAL_WATCH_OFF && gScheduleDualWatchRSSI && !gPttIsPressed) {
+		BackgroundDualWatchRSSI();
+		gScheduleDualWatchRSSI = false;
+	}
+#endif
 
 #ifdef ENABLE_FMRADIO
 	if (gScheduleFM && gFM_ScanState != FM_SCAN_OFF && !FUNCTION_IsRx()) {

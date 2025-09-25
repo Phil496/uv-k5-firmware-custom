@@ -601,6 +601,12 @@ void FM_Start(void)
 	gFM_ScanState             = FM_SCAN_OFF;
 	gFM_RestoreCountdown_10ms = 0;
 
+	// Initialize background dual watch RSSI monitoring
+	if (gEeprom.DUAL_WATCH != DUAL_WATCH_OFF) {
+		gDualWatchRSSICountdown_10ms = dual_watch_count_rssi_check_10ms;
+		gDualWatchCurrentVFO = gEeprom.RX_VFO; // Start with current VFO
+	}
+
 	BK1080_Init(gEeprom.FM_FrequencyPlaying, gEeprom.FM_Band/*, gEeprom.FM_Space*/);
 
 	AUDIO_AudioPathOn();
