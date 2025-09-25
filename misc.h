@@ -122,7 +122,6 @@ extern const uint16_t        dual_watch_count_after_rx_10ms;
 extern const uint16_t        dual_watch_count_after_1_10ms;
 extern const uint16_t        dual_watch_count_after_2_10ms;
 extern const uint16_t        dual_watch_count_toggle_10ms;
-extern const uint16_t        dual_watch_count_fm_mode_10ms;
 extern const uint16_t        dual_watch_count_rssi_check_10ms;
 extern const uint16_t        dual_watch_count_noaa_10ms;
 #ifdef ENABLE_VOX

@@ -585,12 +585,7 @@ static void DualwatchAlternate(void)
 	#ifdef ENABLE_NOAA
 		gDualWatchCountdown_10ms = gIsNoaaMode ? dual_watch_count_noaa_10ms : dual_watch_count_toggle_10ms;
 	#else
-		#ifdef ENABLE_FMRADIO
-			// Use longer interval when FM radio is active to reduce audio interruptions
-			gDualWatchCountdown_10ms = gFmRadioMode ? dual_watch_count_fm_mode_10ms : dual_watch_count_toggle_10ms;
-		#else
-			gDualWatchCountdown_10ms = dual_watch_count_toggle_10ms;
-		#endif
+		gDualWatchCountdown_10ms = dual_watch_count_toggle_10ms;
 	#endif
 }
 
@@ -623,11 +618,13 @@ static void BackgroundDualWatchRSSI(void)
 		// Full switch to receiving VFO with audio
 		gFmRadioMode = false; // Temporarily exit FM mode
 		RADIO_SetupRegisters(false);
+		AUDIO_AudioPathOn();
+		gEnableSpeaker = true;
 		gDualWatchActive = true;
 		gUpdateStatus = true;
 
-		// Reset to longer timeout to allow transmission to complete
-		gDualWatchRSSICountdown_10ms = dual_watch_count_fm_mode_10ms;
+		// Reset to normal dual watch timing
+		gDualWatchRSSICountdown_10ms = dual_watch_count_toggle_10ms;
 		return;
 	}
 

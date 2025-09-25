@@ -649,14 +649,9 @@ void RADIO_SetupRegisters(bool switchToForeground)
 {
 	BK4819_FilterBandwidth_t Bandwidth = gRxVfo->CHANNEL_BANDWIDTH;
 
-#ifdef ENABLE_FMRADIO
-	// Preserve FM audio during dual watch VFO switches
-	if (!gFmRadioMode)
-#endif
-	{
-		AUDIO_AudioPathOff();
-		gEnableSpeaker = false;
-	}
+	AUDIO_AudioPathOff();
+
+	gEnableSpeaker = false;
 
 	BK4819_ToggleGpioOut(BK4819_GPIO6_PIN2_GREEN, false);
 
