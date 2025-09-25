@@ -38,8 +38,8 @@ void UI_GenerateChannelString(char *pString, const uint8_t Channel)
 	}
 
 	pString[0] = 'M';
-	for (i = 1; i < 3; i++)
-		pString[i] = (gInputBox[i] == 10) ? '?' : gInputBox[i] + '0';
+	for (i = 0; i < 2; i++)
+		pString[i + 1] = (gInputBox[i] == 10) ? '?' : gInputBox[i] + '0';
 }
 
 void UI_GenerateChannelStringEx(char *pString, const bool bShowPrefix, const uint8_t ChannelNumber)
