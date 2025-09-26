@@ -23,6 +23,9 @@ const uint8_t     fm_radio_countdown_500ms         =  2000 / 500;  // 2 seconds
 const uint16_t    fm_play_countdown_scan_10ms      =   100 / 10;   // 100ms
 const uint16_t    fm_play_countdown_noscan_10ms    =  1200 / 10;   // 1.2 seconds
 const uint16_t    fm_restore_countdown_10ms        =  5000 / 10;   // 5 seconds
+#ifdef ENABLE_FMRADIO
+const uint16_t    fm_background_restore_10ms       =   800 / 10;   // 800ms fall-back when DW in FM
+#endif
 
 const uint8_t     vfo_state_resume_countdown_500ms =  2500 / 500;  // 2.5 seconds
 

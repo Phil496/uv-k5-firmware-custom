@@ -39,6 +39,11 @@ extern uint8_t           gFM_ChannelPosition;
 extern uint16_t          gFM_FrequencyDeviation;
 extern bool              gFM_FoundFrequency;
 extern uint16_t          gFM_RestoreCountdown_10ms;
+extern bool              gFmRadioBackground;
+
+void    FM_BackgroundEnter(void);
+void    FM_BackgroundExit(bool restoreNow);
+void    FM_BackgroundDualWatchStep(void);
 
 bool    FM_CheckValidChannel(uint8_t Channel);
 // returns first valid channel starting at Channel

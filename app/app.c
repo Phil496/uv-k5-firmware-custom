@@ -978,21 +978,29 @@ void APP_Update(void)
 		&& gVoiceWriteIndex == 0
 #endif
 #ifdef ENABLE_FMRADIO
-		&& !gFmRadioMode
+		&& (!gFmRadioMode || gFmRadioBackground)
 #endif
 #ifdef ENABLE_DTMF_CALLING
 		&& gDTMF_CallState == DTMF_CALL_STATE_NONE
 #endif
 	) {
-		DualwatchAlternate();    // toggle between the two VFO's
+#ifdef ENABLE_FMRADIO
+		if (gFmRadioMode && gFmRadioBackground) {
+			FM_BackgroundDualWatchStep();
+		}
+		else
+#endif
+		{
+			DualwatchAlternate();    // toggle between the two VFO's
 
-		if (gRxVfoIsActive && gScreenToDisplay == DISPLAY_MAIN) {
-			GUI_SelectNextDisplay(DISPLAY_MAIN);
+			if (gRxVfoIsActive && gScreenToDisplay == DISPLAY_MAIN) {
+				GUI_SelectNextDisplay(DISPLAY_MAIN);
+			}
 		}
 
-		gRxVfoIsActive     = false;
-		gScanPauseMode     = false;
-		gRxReceptionMode   = RX_MODE_NONE;
+		gRxVfoIsActive   = false;
+		gScanPauseMode   = false;
+		gRxReceptionMode = RX_MODE_NONE;
 		gScheduleDualWatch = false;
 	}
 

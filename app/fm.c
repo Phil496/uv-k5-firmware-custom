@@ -47,6 +47,7 @@ uint8_t           gFM_ChannelPosition;
 bool              gFM_FoundFrequency;
 bool              gFM_AutoScan;
 uint16_t          gFM_RestoreCountdown_10ms;
+bool              gFmRadioBackground;
 
 
 
@@ -595,10 +596,40 @@ void FM_Play(void)
 	GUI_SelectNextDisplay(DISPLAY_FM);
 }
 
+void FM_BackgroundEnter(void)
+{
+	if (gFmRadioBackground)
+		return;
+	gFmRadioBackground      = true;
+	gFM_RestoreCountdown_10ms = fm_background_restore_10ms;
+	BK1080_Mute(true);
+	gDualWatchActive = false;
+}
+
+void FM_BackgroundExit(bool restoreNow)
+{
+	if (!gFmRadioBackground)
+		return;
+	gFmRadioBackground = false;
+	gFM_RestoreCountdown_10ms = restoreNow ? 0 : gFM_RestoreCountdown_10ms;
+	BK1080_Mute(false);
+	gDualWatchActive = false;
+}
+
+void FM_BackgroundDualWatchStep(void)
+{
+	if (!gFmRadioMode)
+		return;
+	FM_BackgroundEnter();
+	BK1080_Init0();
+	DualwatchAlternate();
+}
+
 void FM_Start(void)
 {
  	gDualWatchActive 		  = false;	// dual-watch in broadcast FM ne marche pas, del DW on status line  @PBA v2.0
 	gFmRadioMode              = true;
+	gFmRadioBackground        = false;
 	gFM_ScanState             = FM_SCAN_OFF;
 	gFM_RestoreCountdown_10ms = 0;
 
@@ -607,7 +638,7 @@ void FM_Start(void)
 	SYSTEM_DelayMs(60);  // allow BK1080 RSSI registers to settle after init @PBA v2.1
 
 	AUDIO_AudioPathOn();
-	
+
 	gEnableSpeaker       = true;
 	gUpdateStatus        = true;
 }
