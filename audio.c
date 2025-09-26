@@ -62,12 +62,13 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 
 	if (gCurrentFunction == FUNCTION_MONITOR)
 		return;
-/*
+/*		inutile de couper radio FM	@PBA v2.1
 #ifdef ENABLE_FMRADIO
 	if (gFmRadioMode)
 		BK1080_Mute(true);
 #endif */
 
+if (!gFmRadioMode)
 	AUDIO_AudioPathOff();
 
 	if (gCurrentFunction == FUNCTION_POWER_SAVE && gRxIdleMode)
@@ -173,6 +174,7 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 	BK4819_EnterTxMute();
 	SYSTEM_DelayMs(20);
 
+	if (!gFmRadioMode)
 	AUDIO_AudioPathOff();
 
 	SYSTEM_DelayMs(5);
@@ -182,7 +184,7 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 
 	if (gEnableSpeaker)
 		AUDIO_AudioPathOn();
-/*
+/*		inutile de couper radio FM	@PBA v2.1
 #ifdef ENABLE_FMRADIO
 	if (gFmRadioMode)
 		BK1080_Mute(false);
