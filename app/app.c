@@ -977,9 +977,6 @@ void APP_Update(void)
 #ifdef ENABLE_VOICE
 		&& gVoiceWriteIndex == 0
 #endif
-#ifdef ENABLE_FMRADIO
-		&& !gFmRadioMode
-#endif
 #ifdef ENABLE_DTMF_CALLING
 		&& gDTMF_CallState == DTMF_CALL_STATE_NONE
 #endif
@@ -1563,6 +1560,7 @@ void APP_TimeSlice500ms(void)
 		#endif
 	}
 
+
 	if (!gCssBackgroundScan && gScanStateDir == SCAN_OFF && !SCANNER_IsScanning()
 #ifdef ENABLE_FMRADIO
 		&& (gFM_ScanState == FM_SCAN_OFF || gAskToSave)
@@ -1614,6 +1612,7 @@ void APP_TimeSlice500ms(void)
 #ifdef ENABLE_FMRADIO
 			if (gFmRadioMode && ! FUNCTION_IsRx()) {
 				disp = DISPLAY_FM;
+				gUpdateDisplay = true;  // update FM display every 500ms for live RSSI @PBA v2.1
 			}
 #endif
 
