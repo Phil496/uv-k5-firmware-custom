@@ -977,9 +977,6 @@ void APP_Update(void)
 #ifdef ENABLE_VOICE
 		&& gVoiceWriteIndex == 0
 #endif
-#ifdef ENABLE_FMRADIO
-		&& !gFmRadioMode
-#endif
 #ifdef ENABLE_DTMF_CALLING
 		&& gDTMF_CallState == DTMF_CALL_STATE_NONE
 #endif
