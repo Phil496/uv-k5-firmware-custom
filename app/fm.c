@@ -279,7 +279,7 @@ static void Key_DIGITS(KEY_Code_t Key, uint8_t state)
 				return;
 			}
 		}
-		else if (State == STATE_MR_MODE && gInputBoxIndex == 1) {
+		else if (State == STATE_MR_MODE && gInputBoxIndex == 1) {	// rejet mémoire >20 @PBA v2.1
 			if (gInputBox[0] > 2) {
 				gBeepToPlay = BEEP_500HZ_60MS_DOUBLE_BEEP_OPTIONAL;
 				gInputBoxIndex = 0;

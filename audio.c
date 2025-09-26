@@ -62,11 +62,11 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 
 	if (gCurrentFunction == FUNCTION_MONITOR)
 		return;
-
+/*
 #ifdef ENABLE_FMRADIO
 	if (gFmRadioMode)
 		BK1080_Mute(true);
-#endif
+#endif */
 
 	AUDIO_AudioPathOff();
 
@@ -182,11 +182,11 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 
 	if (gEnableSpeaker)
 		AUDIO_AudioPathOn();
-
+/*
 #ifdef ENABLE_FMRADIO
 	if (gFmRadioMode)
 		BK1080_Mute(false);
-#endif
+#endif */
 
 	if (gCurrentFunction == FUNCTION_POWER_SAVE && gRxIdleMode)
 		BK4819_Sleep();
