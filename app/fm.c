@@ -19,6 +19,7 @@
 #include <string.h>
 
 #include "app/action.h"
+#include "app/app.h"
 #include "app/fm.h"
 #include "app/generic.h"
 #include "audio.h"
