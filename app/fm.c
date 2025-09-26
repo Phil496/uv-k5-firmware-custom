@@ -604,7 +604,7 @@ void FM_Start(void)
 
 	BK1080_Init(gEeprom.FM_FrequencyPlaying, gEeprom.FM_Band/*, gEeprom.FM_Space*/);
 
-	SYSTEM_DelayMs(10);  // allow BK1080 RSSI registers to settle after init @PBA v2.1
+	SYSTEM_DelayMs(60);  // allow BK1080 RSSI registers to settle after init @PBA v2.1
 
 	AUDIO_AudioPathOn();
 	
