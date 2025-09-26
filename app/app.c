@@ -987,8 +987,7 @@ void APP_Update(void)
 #ifdef ENABLE_FMRADIO
 		if (gFmRadioMode && gFmRadioBackground) {
 			FM_BackgroundDualWatchStep();
-		}
-		else
+		} else
 #endif
 		{
 			DualwatchAlternate();    // toggle between the two VFO's
@@ -996,11 +995,12 @@ void APP_Update(void)
 			if (gRxVfoIsActive && gScreenToDisplay == DISPLAY_MAIN) {
 				GUI_SelectNextDisplay(DISPLAY_MAIN);
 			}
+
+			gRxVfoIsActive   = false;
+			gScanPauseMode   = false;
+			gRxReceptionMode = RX_MODE_NONE;
 		}
 
-		gRxVfoIsActive   = false;
-		gScanPauseMode   = false;
-		gRxReceptionMode = RX_MODE_NONE;
 		gScheduleDualWatch = false;
 	}
 

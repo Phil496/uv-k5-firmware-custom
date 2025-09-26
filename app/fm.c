@@ -612,7 +612,10 @@ void FM_BackgroundExit(bool restoreNow)
 	if (!gFmRadioBackground)
 		return;
 	gFmRadioBackground = false;
-	gFM_RestoreCountdown_10ms = restoreNow ? 0 : gFM_RestoreCountdown_10ms;
+	if (restoreNow)
+		gFM_RestoreCountdown_10ms = 0;
+	else if (gFM_RestoreCountdown_10ms == 0)
+		gFM_RestoreCountdown_10ms = fm_background_restore_10ms;
 	BK1080_Mute(false);
 	gDualWatchActive = false;
 }
