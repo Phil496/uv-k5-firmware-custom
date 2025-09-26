@@ -1563,6 +1563,10 @@ void APP_TimeSlice500ms(void)
 		#endif
 	}
 
+	if (gFmRadioMode) {
+		gUpdateDisplay = true;  // update FM display every 500ms for live RSSI @PBA v2.1
+	}
+
 	if (!gCssBackgroundScan && gScanStateDir == SCAN_OFF && !SCANNER_IsScanning()
 #ifdef ENABLE_FMRADIO
 		&& (gFM_ScanState == FM_SCAN_OFF || gAskToSave)
