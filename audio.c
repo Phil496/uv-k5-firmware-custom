@@ -124,6 +124,8 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 	SYSTEM_DelayMs(2);
 
 	AUDIO_AudioPathOn();
+	if (gFmRadioMode)
+		return;
 
 	SYSTEM_DelayMs(60);
 
