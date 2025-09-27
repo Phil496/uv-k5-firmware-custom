@@ -570,8 +570,8 @@ static void DualwatchAlternate(void)
 		else
 	#endif
 	{	// toggle between VFO's
-	//	gEeprom.RX_VFO = !gEeprom.RX_VFO;
-	//	gRxVfo         = &gEeprom.VfoInfo[gEeprom.RX_VFO];
+		gEeprom.RX_VFO = !gEeprom.RX_VFO;
+		gRxVfo         = &gEeprom.VfoInfo[gEeprom.RX_VFO];
 
 		if (!gDualWatchActive)
 		{	// let the user see DW is active
