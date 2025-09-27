@@ -673,6 +673,8 @@ void RADIO_SetupRegisters(bool switchToForeground)
 	}
 
 	BK4819_ToggleGpioOut(BK4819_GPIO5_PIN1_RED, false);
+	if (gFmRadioMode)
+		return;
 
 	BK4819_SetupPowerAmplifier(0, 0);
 
