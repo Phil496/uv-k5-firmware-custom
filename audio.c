@@ -125,6 +125,7 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 
 	AUDIO_AudioPathOn();
 
+
 	SYSTEM_DelayMs(60);
 
 	uint16_t Duration;
@@ -168,6 +169,7 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 			Duration = 500;
 			break;
 	}
+
 
 	SYSTEM_DelayMs(Duration);
 	BK4819_EnterTxMute();
