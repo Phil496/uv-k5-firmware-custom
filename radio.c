@@ -706,8 +706,7 @@ void RADIO_SetupRegisters(bool switchToForeground)
 	#endif
 	BK4819_SetFrequency(Frequency);
 
-	if (gFmRadioMode)
-	return;
+
 
 	BK4819_SetupSquelch(
 		gRxVfo->SquelchOpenRSSIThresh,    gRxVfo->SquelchCloseRSSIThresh,
@@ -718,6 +717,9 @@ void RADIO_SetupRegisters(bool switchToForeground)
 
 	// what does this in do ?
 	BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_RX_ENABLE, true);
+
+	if (gFmRadioMode)
+	return;
 
 	// AF RX Gain and DAC
 	//BK4819_WriteRegister(BK4819_REG_48, 0xB3A8);  // 1011 00 111010 1000
