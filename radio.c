@@ -711,7 +711,14 @@ void RADIO_SetupRegisters(bool switchToForeground)
 	BK4819_PickRXFilterPathBasedOnFrequency(Frequency);
 
 	// what does this in do ?
-	BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_RX_ENABLE, true);
+#ifdef ENABLE_FMRADIO
+	if (gFmRadioMode && gRxReceptionMode == RX_MODE_NONE && !FUNCTION_IsRx()) {
+		BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_RX_ENABLE, false);
+	} else
+#endif
+	{
+		BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_RX_ENABLE, true);
+	}
 
 	// AF RX Gain and DAC
 	//BK4819_WriteRegister(BK4819_REG_48, 0xB3A8);  // 1011 00 111010 1000
