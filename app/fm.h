@@ -40,6 +40,9 @@ extern uint16_t          gFM_FrequencyDeviation;
 extern bool              gFM_FoundFrequency;
 extern uint16_t          gFM_RestoreCountdown_10ms;
 
+bool    FM_BackgroundDualWatchBegin(void);
+void    FM_BackgroundDualWatchEnd(void);
+
 bool    FM_CheckValidChannel(uint8_t Channel);
 // returns first valid channel starting at Channel
 uint8_t FM_FindNextChannel(uint8_t Channel, uint8_t Direction);

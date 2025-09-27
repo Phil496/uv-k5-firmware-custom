@@ -48,6 +48,24 @@ bool              gFM_FoundFrequency;
 bool              gFM_AutoScan;
 uint16_t          gFM_RestoreCountdown_10ms;
 
+bool FM_BackgroundDualWatchBegin(void)
+{
+	if (!gFmRadioMode)
+		return false;
+
+	BK1080_Mute(true);
+	return true;
+}
+
+void FM_BackgroundDualWatchEnd(void)
+{
+	if (!gFmRadioMode)
+		return;
+
+	gFM_RestoreCountdown_10ms = fm_background_restore_10ms;
+	BK1080_Mute(false);
+}
+
 
 
 const uint8_t BUTTON_STATE_PRESSED = 1 << 0;
