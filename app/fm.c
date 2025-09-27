@@ -601,10 +601,11 @@ void FM_BackgroundEnter(void)
 {
 	if (gFmRadioBackground)
 		return;
-	gFmRadioBackground      = true;
+	gFmRadioBackground        = true;
 	gFM_RestoreCountdown_10ms = fm_background_restore_10ms;
+	BK1080_Init0();
 	BK1080_Mute(true);
-	gDualWatchActive = false;
+	gDualWatchActive          = false;
 }
 
 void FM_BackgroundExit(bool restoreNow)
@@ -620,13 +621,20 @@ void FM_BackgroundExit(bool restoreNow)
 	gDualWatchActive = false;
 }
 
-void FM_BackgroundDualWatchStep(void)
+bool FM_BackgroundDualWatchStep(void)
 {
 	if (!gFmRadioMode)
-		return;
+		return false;
+
 	FM_BackgroundEnter();
-	BK1080_Init0();
+
+	BK1080_Mute(true);
 	DualwatchAlternate();
+	gDualWatchCountdown_10ms = fm_dual_watch_count_toggle_10ms;
+	gFM_RestoreCountdown_10ms = fm_background_restore_10ms;
+	BK1080_Mute(false);
+
+	return true;
 }
 
 void FM_Start(void)

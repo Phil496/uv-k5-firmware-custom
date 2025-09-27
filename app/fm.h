@@ -43,7 +43,7 @@ extern bool              gFmRadioBackground;
 
 void    FM_BackgroundEnter(void);
 void    FM_BackgroundExit(bool restoreNow);
-void    FM_BackgroundDualWatchStep(void);
+bool    FM_BackgroundDualWatchStep(void);
 
 bool    FM_CheckValidChannel(uint8_t Channel);
 // returns first valid channel starting at Channel

@@ -230,6 +230,17 @@ static void HandleIncoming(void)
 	}
 #endif
 
+#ifdef ENABLE_FMRADIO
+	if (gFmRadioMode) {
+		if (FM_BackgroundDualWatchStep()) {
+			gDualWatchActive = false;
+			gUpdateStatus    = true;
+			gUpdateDisplay   = true;
+			return;
+		}
+	}
+#endif
+
 	APP_StartListening(gMonitor ? FUNCTION_MONITOR : FUNCTION_RECEIVE);
 }
 
@@ -977,21 +988,24 @@ void APP_Update(void)
 #ifdef ENABLE_VOICE
 		&& gVoiceWriteIndex == 0
 #endif
-#ifdef ENABLE_FMRADIO
-		&& (!gFmRadioMode || gFmRadioBackground)
-#endif
 #ifdef ENABLE_DTMF_CALLING
 		&& gDTMF_CallState == DTMF_CALL_STATE_NONE
 #endif
 	) {
 #ifdef ENABLE_FMRADIO
-		if (gFmRadioMode && gFmRadioBackground) {
-			FM_BackgroundDualWatchStep();
+		bool didAlternate = false;
+		if (gFmRadioMode) {
+			didAlternate = FM_BackgroundDualWatchStep();
 		} else
+#else
+		bool didAlternate = false;
 #endif
 		{
 			DualwatchAlternate();    // toggle between the two VFO's
+			didAlternate = true;
+		}
 
+		if (didAlternate) {
 			if (gRxVfoIsActive && gScreenToDisplay == DISPLAY_MAIN) {
 				GUI_SelectNextDisplay(DISPLAY_MAIN);
 			}

@@ -85,6 +85,7 @@ extern const uint16_t        fm_play_countdown_noscan_10ms;
 extern const uint16_t        fm_restore_countdown_10ms;
 #ifdef ENABLE_FMRADIO
 extern const uint16_t        fm_background_restore_10ms;
+extern const uint16_t        fm_dual_watch_count_toggle_10ms;
 #endif
 
 extern const uint8_t        vfo_state_resume_countdown_500ms;
