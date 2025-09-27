@@ -175,7 +175,7 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 
 	AUDIO_AudioPathOff();
 
-	SYSTEM_DelayMs(5);
+	SYSTEM_DelayMs(10);		// delai à 10ms au lieu de 5ms, sinon pop sonore en FM @PBA v2.1n
 	BK4819_TurnsOffTones_TurnsOnRX();
 	SYSTEM_DelayMs(5);
 	BK4819_WriteRegister(BK4819_REG_71, ToneConfig);
