@@ -690,8 +690,7 @@ void RADIO_SetupRegisters(bool switchToForeground)
 	}
 	BK4819_WriteRegister(BK4819_REG_3F, 0);
 
-	if (gFmRadioMode)
-		return;
+
 
 	// mic gain 0.5dB/step 0 to 31
 	BK4819_WriteRegister(BK4819_REG_7D, 0xE940 | (gEeprom.MIC_SENSITIVITY_TUNING & 0x1f));
@@ -706,6 +705,9 @@ void RADIO_SetupRegisters(bool switchToForeground)
 		Frequency = gRxVfo->pRX->Frequency;
 	#endif
 	BK4819_SetFrequency(Frequency);
+
+	if (gFmRadioMode)
+	return;
 
 	BK4819_SetupSquelch(
 		gRxVfo->SquelchOpenRSSIThresh,    gRxVfo->SquelchCloseRSSIThresh,
