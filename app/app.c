@@ -580,7 +580,7 @@ static void DualwatchAlternate(void)
 		}
 	}
 
-	RADIO_SetupRegisters(false);
+	// RADIO_SetupRegisters(false);
 
 	#ifdef ENABLE_NOAA
 		gDualWatchCountdown_10ms = gIsNoaaMode ? dual_watch_count_noaa_10ms : dual_watch_count_toggle_10ms;
