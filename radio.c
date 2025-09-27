@@ -706,14 +706,14 @@ void RADIO_SetupRegisters(bool switchToForeground)
 	#endif
 	BK4819_SetFrequency(Frequency);
 
-/*
+
 
 	BK4819_SetupSquelch(
 		gRxVfo->SquelchOpenRSSIThresh,    gRxVfo->SquelchCloseRSSIThresh,
 		gRxVfo->SquelchOpenNoiseThresh,   gRxVfo->SquelchCloseNoiseThresh,
 		gRxVfo->SquelchCloseGlitchThresh, gRxVfo->SquelchOpenGlitchThresh);
 
-	BK4819_PickRXFilterPathBasedOnFrequency(Frequency); */
+	BK4819_PickRXFilterPathBasedOnFrequency(Frequency); 
 
 	// what does this in do ?
 	BK4819_ToggleGpioOut(BK4819_GPIO0_PIN28_RX_ENABLE, true); 
