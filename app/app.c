@@ -1080,7 +1080,7 @@ void APP_Update(void)
 		}
 		else {
 			// toggle between the two VFO's
-			DualwatchAlternate();
+			// DualwatchAlternate();
 			gPowerSave_10ms   = power_save1_10ms;
 			goToSleep = true;
 		}
