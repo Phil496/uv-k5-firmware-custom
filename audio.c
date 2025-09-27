@@ -169,13 +169,13 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 			Duration = 500;
 			break;
 	}
-	if (gFmRadioMode)
-		return;
+
 
 	SYSTEM_DelayMs(Duration);
 	BK4819_EnterTxMute();
 	SYSTEM_DelayMs(20);
-
+	if (gFmRadioMode)
+		return;
 	AUDIO_AudioPathOff();
 
 	SYSTEM_DelayMs(5);
