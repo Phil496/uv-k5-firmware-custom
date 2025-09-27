@@ -673,10 +673,9 @@ void RADIO_SetupRegisters(bool switchToForeground)
 	}
 
 	BK4819_ToggleGpioOut(BK4819_GPIO5_PIN1_RED, false);
-	//if (gFmRadioMode)
-	//	return;
 
-	// BK4819_SetupPowerAmplifier(0, 0);
+
+	BK4819_SetupPowerAmplifier(0, 0);
 
 	BK4819_ToggleGpioOut(BK4819_GPIO1_PIN29_PA_ENABLE, false);
 
@@ -690,6 +689,9 @@ void RADIO_SetupRegisters(bool switchToForeground)
 		SYSTEM_DelayMs(1);
 	}
 	BK4819_WriteRegister(BK4819_REG_3F, 0);
+
+	if (gFmRadioMode)
+		return;
 
 	// mic gain 0.5dB/step 0 to 31
 	BK4819_WriteRegister(BK4819_REG_7D, 0xE940 | (gEeprom.MIC_SENSITIVITY_TUNING & 0x1f));
