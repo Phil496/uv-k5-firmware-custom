@@ -984,7 +984,7 @@ void APP_Update(void)
 		&& gDTMF_CallState == DTMF_CALL_STATE_NONE
 #endif
 	) {
-		DualwatchAlternate();    // toggle between the two VFO's
+//		DualwatchAlternate();    // toggle between the two VFO's
 
 		if (gRxVfoIsActive && gScreenToDisplay == DISPLAY_MAIN) {
 			GUI_SelectNextDisplay(DISPLAY_MAIN);
