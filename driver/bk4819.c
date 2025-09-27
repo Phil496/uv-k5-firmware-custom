@@ -769,7 +769,7 @@ void BK4819_SetupSquelch(
 	// <7:0>  70 RSSI threshold for Squelch = close   0.5dB/step
 	//
 	BK4819_WriteRegister(BK4819_REG_78, ((uint16_t)SquelchOpenRSSIThresh   << 8) | SquelchCloseRSSIThresh);
-	if (!gFmRadioMode) 
+//	if (!gFmRadioMode) 
 		BK4819_SetAF(BK4819_AF_MUTE);
 
 	BK4819_RX_TurnOn();
