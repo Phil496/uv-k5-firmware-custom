@@ -68,8 +68,7 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 		BK1080_Mute(true);
 #endif */
 
-	if (!gFmRadioMode)
-		AUDIO_AudioPathOff();
+	AUDIO_AudioPathOff();
 
 	if (gCurrentFunction == FUNCTION_POWER_SAVE && gRxIdleMode)
 		BK4819_RX_TurnOn();
@@ -177,8 +176,7 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 	SYSTEM_DelayMs(20);
 
 	AUDIO_AudioPathOff();
-//	if (gFmRadioMode)
-//		return;
+
 	SYSTEM_DelayMs(50);
 	BK4819_TurnsOffTones_TurnsOnRX();
 	SYSTEM_DelayMs(5);
