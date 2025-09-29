@@ -82,7 +82,11 @@ void SystickHandler(void)
 	if (gCurrentFunction == FUNCTION_POWER_SAVE)
 		DECREMENT_AND_TRIGGER(gPowerSave_10ms, gPowerSaveCountdownExpired);
 
-	if (gScanStateDir == SCAN_OFF && !gCssBackgroundScan && gEeprom.DUAL_WATCH != DUAL_WATCH_OFF)
+	if (gScanStateDir == SCAN_OFF && !gCssBackgroundScan && gEeprom.DUAL_WATCH != DUAL_WATCH_OFF
+#ifdef ENABLE_FMRADIO
+		&& !gFmRadioMode
+#endif
+	)
 		if (gCurrentFunction != FUNCTION_MONITOR && gCurrentFunction != FUNCTION_TRANSMIT && gCurrentFunction != FUNCTION_RECEIVE)
 			DECREMENT_AND_TRIGGER(gDualWatchCountdown_10ms, gScheduleDualWatch);
 
