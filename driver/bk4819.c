@@ -808,7 +808,7 @@ void BK4819_RX_TurnOn(void)
 	BK4819_WriteRegister(BK4819_REG_37, 0x1F0F);  // 0001111100001111
 
 	// Turn off everything
-	BK4819_WriteRegister(BK4819_REG_30, 0);
+	BK4819_WriteRegister(BK4819_REG_30, 0x0200);	// turn off all but AF_DAC : del clic DWR in FM  @PBA v2.2
 
 
 	BK4819_WriteRegister(BK4819_REG_30,
