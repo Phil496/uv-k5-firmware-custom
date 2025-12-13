@@ -709,18 +709,18 @@ static void DrawSpectrum() {      // correction bug on the spectrum analyzer (th
   uint8_t bars = (steps > 128) ? 128 : steps;         // shift to center bar on freq marker   @PBA v1.0
   uint8_t shift_graph = 64 / steps + 1;               // @PBA v1.0
   uint8_t ox = 0;
-  for (uint8_t i = 0; i < 128; ++i)
+  for (uint8_t i = 0; i < bars; ++i)                  // @PBA v2.3b
    {
-       uint16_t rssi = rssiHistory[i >> settings.stepsCount];
+      uint16_t rssi = rssiHistory[(bars>128) ? i >> settings.stepsCount : i]; // @PBA v2.3b
+      uint8_t x = i * 128 / bars + shift_graph;        // stretch bars to fill the screen width  @PBA v1.0, moveto here @PBA v2.3b
       if (rssi != RSSI_MAX_VALUE)
-        {
-          uint8_t x = i * 128 / bars + shift_graph;   // stretch bars to fill the screen width  @PBA v1.0
+       {
           for (uint8_t xx = ox; xx < x; xx++)
            {
                 DrawVLine(Rssi2Y(rssi), DrawingEndY, xx, true);
            }
-           ox = x;
-        }
+       }
+      ox = x;                                         // moveto here @PBA v2.3b
     }
 }
   
