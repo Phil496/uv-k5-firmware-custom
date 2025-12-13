@@ -36,7 +36,7 @@ BEEP_Type_t gBeepToPlay = BEEP_NONE;
 
 void AUDIO_PlayBeep(BEEP_Type_t Beep)
 {
-
+/*													pas de verif sur type beep, juste si No_beep @PBA v2.3
 	if (Beep != BEEP_880HZ_60MS_DOUBLE_BEEP &&
 	    Beep != BEEP_500HZ_60MS_DOUBLE_BEEP &&
 	    Beep != BEEP_440HZ_500MS &&
@@ -48,8 +48,8 @@ void AUDIO_PlayBeep(BEEP_Type_t Beep)
 		Beep != BEEP_400HZ_30MS &&
 		Beep != BEEP_500HZ_30MS &&
 		Beep != BEEP_600HZ_30MS &&
-#endif
-	   !gEeprom.BEEP_CONTROL)
+#endif	*/
+	if  (!gEeprom.BEEP_CONTROL)
 		return;
 
 #ifdef ENABLE_AIRCOPY
