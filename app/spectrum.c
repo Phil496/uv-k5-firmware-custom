@@ -356,9 +356,12 @@ static void ToggleAudio(bool on) {
 }
 
 static void ToggleRX(bool on) {
+  if (isListening == on) {           // @PBA v2.3c
+    return;
+  }
   isListening = on;
 
-  RADIO_SetupAGC(on, lockAGC);
+  RADIO_SetupAGC(settings.modulationType == MODULATION_AM, lockAGC); // @PBA v2.3c
   BK4819_ToggleGpioOut(BK4819_GPIO6_PIN2_GREEN, on);
 
   ToggleAudio(on);
@@ -1252,7 +1255,9 @@ static void UpdateStill() {
   peak.rssi = scanInfo.rssi;
   AutoTriggerLevel();
 
-  ToggleRX(IsPeakOverLevel() || monitorMode);
+  if (IsPeakOverLevel() || monitorMode) {  // @PBA v2.3c
+    ToggleRX(true);
+  }
 }
 
 static void UpdateListening() {

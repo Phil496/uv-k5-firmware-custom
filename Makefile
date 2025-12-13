@@ -459,7 +459,7 @@ else ifneq (,$(HAS_CRCMOD))
 	$(info )
 else
 ifeq ($(ENABLE_FEAT_F4HWN),1)
-	-$(MY_PYTHON) fw-pack.py $<.bin $(AUTHOR_STRING_2) $(VERSION_STRING_2) $<.packed.bin
+	-$(MY_PYTHON) fw-pack.py $<.bin $(AUTHOR_STRING_2) $(VERSION_STRING_2) PBA_packed_.bin
 else
 	-$(MY_PYTHON) fw-pack.py $<.bin $(AUTHOR_STRING) $(VERSION_STRING) $<.packed.bin
 endif
