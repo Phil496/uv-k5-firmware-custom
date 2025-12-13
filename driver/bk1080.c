@@ -131,14 +131,14 @@ void BK1080_GetFrequencyDeviation(uint16_t Frequency)
 
 uint16_t BK1080_GetFreqLoLimit(uint8_t band)
 {
-	uint16_t lim[] = {875, 760, 760, 640};
+	static const uint16_t lim[] = {875, 760, 760, 640};		// PBA v2.3
 	return lim[band % 4];
 }
 
 uint16_t BK1080_GetFreqHiLimit(uint8_t band)
 {
 	band %= 4;
-	uint16_t lim[] = {1080, 1080, 900, 760};
+	static const uint16_t lim[] = {1080, 1080, 900, 760};	// PBA v2.3
 	return lim[band % 4];
 }
 
