@@ -391,7 +391,7 @@ void DisplayRSSIBar(const bool now)
 	}
 	else
 	{
-		sprintf(str, "% 4d %s", -rssi_dBm, "dBm");
+		sprintf(str, "% 4d%s", -rssi_dBm, "dBm");		// @PBA v2.3d
 		GUI_DisplaySmallest(str, 2, 25, false, true);
 	}
 
