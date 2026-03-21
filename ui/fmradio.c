@@ -83,7 +83,7 @@ void UI_DisplayFM(void)
 	sprintf(String, "%2u/%2u%s",
 		rssi_value,							// RSSI en dBµV, max 75dBµV (datasheet) -> 95		@PBA v1.6
 		val_07 & 0x000f,					// SNR en dB, max 15
-		((val_0A >> 8) & 1u) ? "S" : "m");	// Stéréo mode ou mono	
+		((val_0A >> 8) & 1u) ? "s" : "m");	// Stéréo mode ou mono		 @PBA v2.3e
 	UI_PrintStringSmallNormal(String, 84, 127, 6);		// @PBA v1.5
 // Affichage barre RSSI sur la ligne 5					@PBA v1.6c
 	const uint8_t rssi_bars = MIN(8, rssi_value / 10); 	// On convertit le RSSI en nombre de barres (max 8 barres) 8/80
