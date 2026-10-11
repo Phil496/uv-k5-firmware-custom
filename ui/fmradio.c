@@ -56,7 +56,7 @@ void UI_DisplayFM(void)
 		pPrintStr = "DEL?";
 	} else if (gFM_ScanState == FM_SCAN_OFF) {
 		if (gEeprom.FM_IsMrMode) {
-			sprintf(String, "MR%02u", gEeprom.FM_SelectedChannel + 1);  // @PBA v2.1, v2.4
+			sprintf(String, "M%02u", gEeprom.FM_SelectedChannel + 1);  // @PBA v2.1, v2.4a
 			pPrintStr = String;
 		} else {
 			pPrintStr = "VFO";
